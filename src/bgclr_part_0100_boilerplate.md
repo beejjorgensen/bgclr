@@ -47,69 +47,48 @@
 
 # Foreword
 
-No point in wasting words here, folks, let's jump straight into the C
-code:
+The door slowly creaks open revealing a long hall with dusty stacks of
+books of lore...
 
-``` {.c}
-E((ck?main((z?(stat(M,&t)?P+=a+'{'?0:3:
-execv(M,k),a=G,i=P,y=G&255,
-sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
-```
+I admit, maybe not that.
 
-And they lived happily ever after. The End.
+But you have found the Library Reference portion of Beej's Guide to C!
 
-What's this? You say something's still not clear about this whole C
-programming language thing?
+This isn't a tutorial, but rather is a comprehensive set of manual pages
+(or _man pages_ as Unix hackers like to say) that define _every_
+function in the C Standard Library, complete with examples.
 
-Well, to be quite honest, I'm not even sure what the above code does.
-It's a snippet from one of the entries in the 2001 [fl[International
-Obfuscated C Code Contest|https://www.ioccc.org/]][i[International
-Obfuscated C Code Contest]], a wonderful
-competition wherein the entrants attempt to write the most unreadable C
-code possible, with often surprising results.
+> "This book, sir, contains every word in our beloved language." 
+> "Every single one, sir?" 
+> "Every single one, sir!" 
+> "Ah, well in that case, sir, I hope you will not object if I also
+> offer the doctor my most enthusiastic contrafribularities." 
+>
+> --Blackadder toying with Dr. Samuel Johnson
 
-The bad news is that if you're a beginner in this whole thing, all C
-code you see probably looks obfuscated! The good news is, it's not
-going to be that way for long.
+There are, in fact, a number of functions left out of this guide, most
+notably all the optional "safe" functions (with a `_s` suffix).
 
-What we'll try to do over the course of this guide is lead you from
-complete and utter sheer lost confusion on to the sort of enlightened
-bliss that can only be obtained through pure C programming. Right on.
+But everything you're likely to want is definitely covered in here. With
+examples.
+
+Probably.
 
 ## Audience
 
-This guide assumes that you've already got some programming knowledge
-under your belt from another language, such as
-[flw[Python|Python_(programming_language)]],
-[flw[JavaScript|JavaScript]], [flw[Java|Java_(programming_language)]],
-[flw[Rust|Rust_(programming_language)]],
-[flw[Go|Go_(programming_language)]],
-[flw[Swift|Swift_(programming_language)]], etc.
-([flw[Objective-C|Objective-C]] devs will have a particularly easy time
-of it!)
+This guide is for people who are at least modestly proficient in C.
 
-We're going to assume you know what variables are, what loops do, how
-functions work, and so on.
-
-If that's not you for whatever reason the best I can hope to provide is
-some honest entertainment for your reading pleasure. The only thing I
-can reasonably promise is that this guide won't end on a cliffhanger...
-or _will_ it?
+If you are not one of those people and wish to become one of those
+people, I can wholeheartedly recommend with zero bias the book
+[fl[_Beej's Guide to C Programming_|https://beej.us/guide/bgc/]], freely
+available wherever the Internet is sold.
 
 ## How to Read This Book
 
-The book is in two parts: the tutorial part and the reference part.
+Use the contents or index to find the function or category you're after.
 
-If you're new, go through the tutorial part in order, generally. The
-higher you get in chapters, the less important it is to go in order.
-
-And no matter your skill level, the reference part is there with
-complete examples of the standard library function calls to help refresh
-your memory whenever needed. Good for reading over a bowl of cereal or
-other time.
-
-Finally, glancing at the index (if you're reading the print version),
-the reference section entries are italicized.
+Then grab a bowl of your favorite cereal and devour the delicious,
+delicious verbiage.
 
 ## Platform and Compiler
 
@@ -138,9 +117,14 @@ all!) C code. Best use a proper C compiler if you can.
 ## Official Homepage
 
 This official location of this document is
-[fl[https://beej.us/guide/bgc/|https://beej.us/guide/bgc/]]. Maybe
-this'll change in the future, but it's more likely that all the other
-guides are migrated off Chico State computers.
+[fl[`https://beej.us/guide/bgclr/`|https://beej.us/guide/bgclr/]]. There
+used to be a note here about migrating off Chico State's computers (my
+alma mater), but that's something that happened roughly a zillion years
+ago and the wording remained here only because it was copied over from
+the Network Guide, [_breath_] which I apparently haven't read in its
+entirety for quite some time.
+
+The End.
 
 ## Email Policy
 
@@ -186,7 +170,8 @@ section, below.
 
 ## Copyright and Distribution
 
-Beej's Guide to C is Copyright © 2021 Brian "Beej Jorgensen" Hall.
+Beej's Guide to C Programming--Library Reference is Copyright © 2021
+Brian "Beej Jorgensen" Hall.
 
 With specific exceptions for source code and translations, below, this
 work is licensed under the Creative Commons Attribution-Noncommercial-No
