@@ -92,6 +92,54 @@ imaginary float f = 2.3*I;
 `_Generic` is a type "switcher" that allows you to emit different code
 at compile time depending on the type of the data.
 
+## Composite Types
+
+### `struct` Types
+
+You can build a composite type made out of other types with `struct` and
+then declare variables to be of that type.
+
+``` {.c}
+struct animal {
+    char *name;
+    int leg_count;
+};
+
+struct animal a;
+struct animal b = {"goat", 4};
+struct animal c = {.name="goat", .leg_count=4};
+```
+
+Accessing is done with the dot operator (`.`) or, if the variable is a
+pointer to a `struct`, the arrow operator (`->`).
+
+``` {.c}
+struct animal *p = b;
+
+printf("%d\n", b.leg_count);
+printf("%d\n", p->leg_count);
+```
+
+### `union` Types
+
+These are like `struct` types in usage, except that you can only use one
+field at a time.
+
+TODO
+
+### `enum` Types
+
+TODO
+
+## Type Aliases
+
+TODO typedef
+
+## Additional Type-Related Specifiers
+
+You can give the compiler more hints about what qualities a type should
+have using these specifiers and qualifiers.
+
 ### Storage Class Specifiers
 
 These can be placed before a type to provide more guidance about how the
@@ -414,8 +462,10 @@ int increment(int a)
 ```
 
 ```
-enum
+TODO
+
 typedef
+enum
 struct
 union
 
