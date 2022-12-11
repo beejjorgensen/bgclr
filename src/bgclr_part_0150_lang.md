@@ -28,6 +28,10 @@ at the ends of lines.
 If it's not a keyword or other reserved punctuation, it tends to be an
 expression. Think "math including function calls".
 
+### Statements
+
+Think `if`, `while`, etc. Executable keywords.
+
 ### Booleans
 
 Ignoring the `bool` type, zero is false and non-zero is true.
@@ -38,48 +42,218 @@ Multiple expressions and flow control keywords can be wrapped up in a
 block, made up of `{` followed by one or more expressions or statements,
 followed by `}`.
 
+### Code Examples
+
+They are meant to give an idea of how to use various statements, but not
+be comprehensive in terms of examples.
+
+In the examples, below, if either an expression or statement can be
+used, the word `code` is inserted.
+
 ## Operators
 
 TODO
 
-## Types
+## Type Specifiers
 
-TODO
+Integer types from smallest to largest capacity: `char`, `short`, `int`,
+`long`, `long long`.
 
-### Type Specifiers
+Any integer type may be prefaced with `signed` (the default except for
+`char`) or `unsigned`.
 
-TODO
+Whether or not `char` is signed is implementation defined.
+
+Floating types from least accuracy to most: `float`, `double`, `long
+double`.
+
+`void` is a type representing lack of type.
+
+`_Bool` is a Boolean type. This becomes `bool` in C23. Earlier versions
+of C must include `<stdbool.h>` to get `bool`.
+
+`_Complex` indicates a complex floating type type, when paired with such
+a type. Include `<complex.h>` to use `complex` instead.
+
+``` {.c}
+complex float x = 1.2 + 2.3*I;
+complex double y = 1.2 + 2.3*I;
+```
+
+`_Imaginary` is an optional keyword used to specify an imaginary type
+(the imaginary part of a complex number) when paired with a floating
+type. Include `<complex.h>` to use `imaginary` instead. Neither GCC nor
+clang support this.
+
+``` {.c}
+imaginary float f = 2.3*I;
+```
+
+`_Generic` is a type "switcher" that allows you to emit different code
+at compile time depending on the type of the data.
+
+### Storage Class Specifiers
+
+These can be placed before a type to provide more guidance about how the
+type is used.
+
+``` {.c}
+auto int a
+register int a
+static int a
+extern int a
+thread_local int a
+```
+
+`auto` is the default, so it's basically never used. Indicates automatic
+storage duration (things like local variables get freed automatically
+when they fall out of scope). In C23 this keyword changes to indicate
+type inference like C++.
+
+`register` indicates that accessing this variable should be as quick as
+possible. Restricts some usage of the variable giving the compiler a
+chance to optimize. Rare in daily use.
+
+`static` at function scope indicates that this variable's value should
+persist from call to call. At file scope indicates that this variable
+should not be visible outside of this source file.
+
+`extern` indicates that this variable refers to one declared in another
+source file.
+
+`_Thread_local` means that every thread gets its own copy of this
+variable. You can use `thread_local` if you include `<threads.h>`.
 
 ### Type Qualifiers
 
-TODO
+These can be placed before a type to provide more guidance about how the
+type is used.
+
+``` {.c}
+const int a
+const int *p
+int * const p
+const int * const p
+int * restrict p
+volatile int a
+atomic int a
+```
+
+`const` means the value can't be modified. You can use it with pointers,
+as well:
+
+``` {.c}
+const int a = 10;        // Can't modify "a"
+
+const int *p = &b        // Can't modify the thing "p" points to ("b")
+int *const p = &b        // Can't modify "p"
+const int *const p = &b  // Can't modify "p" or the thing it points to
+```
+
+`restrict` on a pointer means that there will only be one pointer to the
+item in question, freeing the compiler to make some optimizations.
+
+`volatile` indicates that the value in a variable might change at any
+time and should be loaded from memory instead of being kept in a
+register. Usually used with memory-mapped hardware.
+
+`_Atomic` (or `atomic` if you include `<stdatomic.h>`) tells the
+compiler that reads or writes to this type should happen atomically.
+(This might be accomplished with a lock depending on the platform and
+type.)
+
+### Function Specifiers
+
+These are used on functions to provide additional guidance for the
+compiler.
+
+`_Noreturn` indicates that a function will never return. It can only run
+forever or exit the program entirely. If you include `<stdnoreturn.h>`,
+you can use `noreturn` instead.
+
+`inline` indicates that calls to this function should be as fast as
+possible. The intention here is that the code of the function be moved
+_inline_ to remove the overhead of the call and return. The compiler
+regards `inline` as a suggestion, not a requirement.
+
+### Alignment Specifier
+
+You can force the alignment of a variable with memory with `_Alignas`.
+If you include `<stdalign.h>` you can use `alignas` instead.
+
+`alignas(0)` has no effect.
+
+``` {.c}
+alignas(16) int a = 12;    // 16-byte alignment
+alignas(long) int b = 34;  // Same alignment as "long"
+```
 
 ## `if` Statement
 
 ``` {.c}
-if (boolean_expression) expression;
+if (boolean_expression) code;
 
 if (boolean_expression) {
-    expression;
-    expression;
-    expression;
+    code;
+    code;
+    code;
 }
 
 if (boolean_expression) {
-    expression;
-    expression;
+    code;
+    code;
 } else
-    expression;
+    code;
 
 if (boolean_expression) {
-    expression;
-    expression;
+    code;
+    code;
 } else if {
-    expression;
-    expression;
-    expression;
+    code;
+    code;
+    code;
 } else {
-    expression;
+    code;
+}
+```
+
+## `for` Statement
+
+Classic `for`-loop.
+
+The bit in parens comes in three parts separated by semicolons:
+
+* Initialization, executed once.
+* Block entry condition, evaluated every time before entering the loop
+  body.
+* Post expression, evaluated every time after the loop body.
+
+For example, initialize `i` to `0`, enter the loop body while `i < 10`,
+and then increment `i` after each loop iteration:
+
+``` {.c}
+for (i = 0; i < 10; i++) {
+    code;
+    code;
+    code;
+}
+```
+
+You can declare loop-local variables by specifying their type:
+
+``` {.c}
+for (int i = 0; i < 10; i++) {
+    code;
+    code;
+}
+```
+
+You can separate parts of the expressions with the comma operator:
+
+``` {.c}
+for (i = 0, j = 5; i < 10; i++, j *= 3) {
+    code;
+    code;
 }
 ```
 
@@ -90,11 +264,11 @@ continuation test happens before the loop.
 
 ``` {.c}
 
-while (boolean_expression) expression;
+while (boolean_expression) code;
 
 while (boolean_expression) {
-    expression;
-    expression;
+    code;
+    code;
 }
 ```
 
@@ -105,11 +279,11 @@ false. The continuation test doesn't happen until after the loop.
 
 ``` {.c}
 
-do expression while (boolean_expression);
+do code while (boolean_expression);
 
 do {
-    expression;
-    expression;
+    code;
+    code;
 } while (boolean_expression);
 ```
 
@@ -124,20 +298,23 @@ the cases match. Braces are not required around the cases.
 ``` {.c}
 switch (expression) {
     case constant:
-        expression;
-        expression;
+        code;
+        code;
         break;
 
     case constant:
-        expression;
-        expression;
+        code;
+        code;
         break;
 
     default:
-        expression;
+        code;
         break;
 }
 ```
+
+The final `break` in the `switch` is unnecessary if there are no cases
+after it.
 
 If the `break` isn't present, the `case` falls through to the next one.
 It's nice to put a comment to that effect so other devs don't hate you.
@@ -145,64 +322,107 @@ It's nice to put a comment to that effect so other devs don't hate you.
 ``` {.c}
 switch (expression) {
     case constant:
-        expression;
-        expression;
+        code;
+        code;
         // fall through!
 
     case constant:
-        expression;
+        code;
         break;
 }
 ```
 
 ## `break` Statement
 
-TODO
+This breaks out of a `switch` case, but it also can break out of any
+loop.
+
+``` {.c}
+while (boolean_expression) {
+    code;
+
+    if (boolean_expression)
+        break;
+
+    code;
+}
+```
+
+## `continue` Statement
+
+This can be used to short-circuit a loop and go to the next continuation
+condition test without completing the body of the loop.
+
+``` {.c}
+while (boolean_expression) {
+    code;
+    code;
+
+    if (boolean_expression_2)
+        continue;
+
+    // If boolean_expression_2, code down here will be skipped:
+
+    code;
+    code;
+}
+```
+
+## `goto` Statement
+
+You can just jump anywhere within a function with `goto`. (You can't
+`goto` between functions, only within the same function as the `goto`.)
+
+The destination of the `goto` is a _label_, which is an identifier
+followed by a colon (`:`). Labels are typically left-justified all the
+way to the margin to make them visually stand out.
+
+``` {.c}
+{
+    // Abusive demo code that should be a while loop
+
+    int i = 0;
+
+loop:
+
+    printf("%d\n", i++);
+
+    if (i < 10)
+        goto loop;
+}
+```
+
+## `return` Statement
+
+This is how you get back from a function. You can `return` multiple
+times or just once.
+
+If a function with `void` return type falls off the end, the `return` is
+implicit.
+
+If the return type is not `void`, the `return` statement must specify a
+return value of the same type.
+
+Parentheses around the return value are not necessary (as it's a
+statement, not a function).
 
 ```
-auto
-break
-char
-const
-continue
-default
-double
+int increment(int a)
+{
+    return a + 1;
+}
+```
+
+```
 enum
-
-
-extern
-float
-for
-goto
-inline
-int
-long
-register
-restrict
-return
-short
-signed
-
-
-sizeof
-static
-struct
 typedef
+struct
 union
-unsigned
-void
-volatile
 
-
-_Alignas
-_Alignof
-_Atomic
-_BitInt
-_Bool
-_Complex
-_Generic
-_Imaginary
-_Noreturn
 _Static_assert
-_Thread_local
+
+Operators
+sizeof
+Casting
+_Alignof
 ```
