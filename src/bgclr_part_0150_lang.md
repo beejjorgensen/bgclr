@@ -12,17 +12,6 @@ the syntax, keywords, and other animals in the C menagerie.
 
 Some things you'll need to make sense of the examples, below.
 
-### Comments
-
-Comments to the end of line begin with `//`.
-
-Multiline comments begin with `/*` and are terminated with `*/`.
-
-### Separators
-
-Expressions in C are separated by semicolons (`;`). These tend to appear
-at the ends of lines.
-
 ### Expressions
 
 If it's not a keyword or other reserved punctuation, it tends to be an
@@ -51,6 +40,17 @@ In the examples, below, if either an expression or statement can be
 used, the word `code` is inserted.
 
 ## Operators
+
+### Comments
+
+Comments to the end of line begin with `//`.
+
+Multiline comments begin with `/*` and are terminated with `*/`.
+
+### Separators
+
+Expressions in C are separated by semicolons (`;`). These tend to appear
+at the ends of lines.
 
 TODO
 
@@ -123,17 +123,111 @@ printf("%d\n", p->leg_count);
 ### `union` Types
 
 These are like `struct` types in usage, except that you can only use one
-field at a time.
+field at a time. (The fields all use the same region of memory.)
 
-TODO
+``` {.c}
+union dt {
+    float distance;
+    int time;
+};
+
+union dt a;
+union dt b = {6};            // Initializes "distance", the first field
+union dt c = {.distance=6};  // Initializes "distance"
+union dt d = {.time=6};      // Initializes "time"
+```
+
+Accessing is done with the dot operator (`.`) or, if the variable is a
+pointer to a `union`, the arrow operator (`->`).
+
+``` {.c}
+union dt *p = b;
+
+printf("%d\n", b.time);
+printf("%d\n", p->time);
+```
 
 ### `enum` Types
 
-TODO
+Gives you a typed way to have named constant integer values. These can
+be used with `switch()`, or as an array size, or any other place
+constant values are needed.
+
+Names are conventionally capitalized.
+
+``` {.c}
+enum animal {
+    ANTELOPE,
+    BADGER,
+    CAT,
+    DOG,
+    ELEPHANT,
+    FISH
+};
+
+enum animal a = CAT;
+
+if (a == CAT)
+    printf("The animal is a cat.\n");
+```
+
+The names have numeric values starting with zero and counting up. (In
+the example above, `DOG` would be `3`.)
+
+The numeric value can be overridden by specifying an integer exactly.
+Subsequent values increment from the specified one.
+
+``` {.c}
+enum animal {
+    ANTELOPE = 4,
+    BADGER,         // Will be 5
+    CAT,            // Will be 6
+    DOG = 3,
+    ELEPHANT,       // Will be 4
+    FISH            // Will be 5
+};
+```
+
+As above, duplicate values are not illegal, but might be of marginal
+usefulness.
 
 ## Type Aliases
 
-TODO typedef
+You can set up a type alias for convenience or abstraction.
+
+Here we'll make a new type called `time_counter` that is just an `int`.
+It can only be used exactly like an `int`. It's just an alias for an
+`int`.
+
+``` {.c}
+typedef int time_counter;
+
+time_counter t = 3490;
+```
+
+Also works with `struct`s or `union`s:
+
+``` {.c}
+struct foo {
+    int bar;
+    float baz;
+};
+
+typedef struct foo funtype;
+
+funtype f = {1, 2}; // "funtype" is an alias for "struct foo";
+```
+
+It also works inline, and with named or unnamed `struct`s or `union`s:
+
+``` {.c}
+typedef struct {
+    int bar;
+    float baz;
+} funtype;
+
+funtype f = {1, 2}; // "funtype" is an alias for the unnamed struct
+```
 
 ## Additional Type-Related Specifiers
 
@@ -462,13 +556,6 @@ int increment(int a)
 ```
 
 ```
-TODO
-
-typedef
-enum
-struct
-union
-
 _Static_assert
 
 Operators
