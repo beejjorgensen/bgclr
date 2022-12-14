@@ -405,7 +405,6 @@ This loop won't enter if the Boolean expression is false. The
 continuation test happens before the loop.
 
 ``` {.c}
-
 while (boolean_expression) code;
 
 while (boolean_expression) {
@@ -548,7 +547,7 @@ return value of the same type.
 Parentheses around the return value are not necessary (as it's a
 statement, not a function).
 
-```
+``` {.c}
 int increment(int a)
 {
     return a + 1;
@@ -562,4 +561,5 @@ Operators
 sizeof
 Casting
 _Alignof
+Variadic functions
 ```
