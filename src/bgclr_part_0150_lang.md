@@ -1,6 +1,18 @@
 <!-- Beej's guide to C
 
 # vim: ts=4:sw=4:nosi:et:tw=72
+
+TODO
+
+Operators:
+    Bitwise << >> & | ~ ^
+    Comparison < > <= >= != =
+    Compound Assignment:: bitwise, arithmetic
+    Comma: ,
+
+Initializers
+    In compound literals
+
 -->
 
 # The C Language
@@ -11,6 +23,17 @@ the syntax, keywords, and other animals in the C menagerie.
 ## Background
 
 Some things you'll need to make sense of the examples, below.
+
+### Comments
+
+Comments in C start with `//` and go to the end of a line.
+
+Multiline comments begin with `/*` and continue until a closing `*/`.
+
+### Separators
+
+Expressions in C are separated by semicolons (`;`). These tend to appear
+at the ends of lines.
 
 ### Expressions
 
@@ -41,18 +64,143 @@ used, the word `code` is inserted.
 
 ## Operators
 
-### Comments
+### Arithmetic Operators
 
-Comments to the end of line begin with `//`.
+The arithmetic operators: `+`, `-`, `*`, `/`, `%` (remainder).
 
-Multiline comments begin with `/*` and are terminated with `*/`.
+Division is integer if all arguments are integers. Otherwise it's a
+floating result.
 
-### Separators
+You can also negate an expression by putting `-` in front of it. (You
+can also put a `+` in front of it---this doesn't do anything
+mathematically, but it causes the Usual Arithmetic Conversions to be
+performed on the expression.)
 
-Expressions in C are separated by semicolons (`;`). These tend to appear
-at the ends of lines.
+### Pre- and Post-Increment and -Decrement
 
-TODO
+The post-increment (`++`) and post-decrement (`--`) operators (after the
+variable) do their work _after_ the rest of the expression has been
+evaluated.
+
+``` {.c}
+int x = 10;
+int y = 20;
+int z = 30;
+
+int w = (x++) + (y--) + (z++);
+
+print("%d %d %d %d\n", x, y, z, w);  // 11 19 31 60
+```
+
+The pre-increment (`++`) and pre-decrement (`--`) operators (before the
+variable) do their work _before_ the rest of the expression has been
+evaluated.
+
+``` {.c}
+int x = 10;
+int y = 20;
+int z = 30;
+
+int w = (++x) + (--y) + (++z);
+
+print("%d %d %d %d\n", x, y, z, w);  // 11 19 31 61
+```
+
+### Pointer Operators
+
+`*` in front of a pointer variable dereferences that variable.
+
+`&` in front of a variable gives the address of that variable.
+
+`+` and `-` arithmetic operators work on pointers for pointer
+arithmetic.
+
+### Structure and Union Operators
+
+The dot operator (`.`) can get a field value out of a `struct` or
+`union`.
+
+The arrow operator (`->`) can get a field value out of a pointer to a
+`struct` or `union`. These two are equivalent, assuming `p` is just such
+a pointer:
+
+``` {.c}
+(*p).bar;
+p->bar;
+```
+
+### Array Operators
+
+The square bracket operators can reference a value in an array:
+
+``` {.c}
+a[10] = 99;
+```
+
+This is syntactic sugar over pointer arithmetic and referencing. The
+above line is equivalent to:
+
+``` {.c}
+*(a + 10) = 99;
+```
+
+### The `sizeof` Operator
+
+This is a compile-time operator that gives you the size in bytes of the
+type of the argument. The type of the expression is used; the expression
+is not evaluated. `sizeof` works with any type, even user-defined
+composite types.
+
+The return type is the integer type `size_t`.
+
+```
+float f;
+size_t x = sizeof f;
+
+printf("f is %zu bytes\n", x);
+```
+
+You can also specify a raw type name in there by wrapping it in
+parentheses:
+
+``` {.c}
+size_t x = sizeof(int);
+
+printf("int is %zu bytes\n", x);
+```
+
+### Type Casts
+
+You can force an expression to be another type (within reason) by
+_casting_ to that type.
+
+You give the new type name in parentheses.
+
+Here we are forcing the subexpression `x` to be type `float` just before
+the division^[This doesn't change the type of `x` in other
+contexts---it's just in this one usage in this expression.]. This causes
+the division, which would otherwise be an integer division, to be a
+floating point division.
+
+``` {.c}
+int x = 17;
+int y = 2;
+
+float f = (float)x / y;
+```
+
+### `_Alignof` Operator
+
+You can get the byte alignment of any type with the `_Alignof`
+compile-time operator. If you include `<stdalign.h>`, you can use
+`alignof` instead.
+
+Any type can be the argument to the operator, which must be in
+parenthesis. Unlike `sizeof`, the argument cannot be an expression.
+
+``` {.c}
+printf("Alignment of int is %zu\n", alignof(int));
+```
 
 ## Type Specifiers
 
@@ -91,6 +239,10 @@ imaginary float f = 2.3*I;
 
 `_Generic` is a type "switcher" that allows you to emit different code
 at compile time depending on the type of the data.
+
+## Constant Types
+
+TODO
 
 ## Composite Types
 
@@ -190,6 +342,10 @@ enum animal {
 
 As above, duplicate values are not illegal, but might be of marginal
 usefulness.
+
+## Compound Literals
+
+TODO
 
 ## Type Aliases
 
@@ -554,12 +710,93 @@ int increment(int a)
 }
 ```
 
-```
-_Static_assert
+## `_Statoic_assert` Statement
 
-Operators
-sizeof
-Casting
-_Alignof
-Variadic functions
+This is a way to prevent _compilation_ of a program if a certain
+constant condition is not met.
+
+``` {.c}
+_Static_assert(__STDC_VERSION__ >= 201112L, "You need at least C11!")
+```
+
+## Functions
+
+You need to specify the return type and parameter types for the
+function, and the body goes in a block afterward.
+
+Variables in the function are local to that function.
+
+``` {.c}
+// Function that adds two numbers
+
+int add(int x, int y)
+{
+    int sum = x + y;
+
+    return sum;
+}
+```
+
+Functions that return nothing should be return type `void`. Functions
+that accept no parameters should have `void` as the parameter list.
+
+``` {.c}
+// All side effects, all the time!
+
+void foo(void)
+{
+    some_global = 12;
+    printf("Here we go!\n");
+}
+```
+
+### `main()` Function
+
+This is the function that runs when you first start the program. It will
+be one of these forms:
+
+``` {.c}
+int main(void)
+int main(int argc, char *argv[])
+```
+
+The first form ignores all command line parameters.
+
+The second form stores the count of the command line parameters in
+`argc`, and stores the parameters themselves as an array of strings in
+`argv`. The first of these, `argv[0]`, is typically the name of the
+executable.
+
+The return values usually show up as exit status codes in the OS.
+If there is no `return`, falling off the end of `main()` is an implied
+`return 0`^[Note that this implication only for `main()`, and not for
+any other functions.].
+
+### Variadic Functions
+
+Some functions can take a variable number of arguments. Every function
+must have at least one argument. The remaining arguments are specified
+by `...` and can be read with the `va_start()`, `va_arg()`, and
+`va_end()` macros.
+
+Here's an example that adds up a variable number of integer values.
+
+``` {.c}
+int add(int count, ...)
+{
+    int total = 0;
+    va_list va;
+
+    va_start(va, count);   // Start with arguments after "count"
+
+    for (int i = 0; i < count; i++) {
+        int n = va_arg(va, int);   // Get the next int
+
+        total += n;
+    }
+
+    va_end(va);  // All done
+
+    return total;
+}
 ```
