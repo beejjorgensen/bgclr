@@ -299,7 +299,46 @@ at compile time depending on the type of the data.
 
 ## Constant Types
 
-TODO
+You can declare constants to be of specific types (though it might be a
+larger type). In the following example unqualified types, case doesn't
+matter, and the `U` can come before or after the `L` or `LL`.
+
+``` {.c}
+123              int or larger
+123L             long int or larger
+123LL            long long int
+
+123U             unsigned int or larger
+123UL            unsigned long int or larger
+123ULL           unsigned long long int
+
+123.4F           float
+123.4            double
+123.4L           long double
+
+'a'              char
+"hello, world"   char* (string)
+```
+
+You can specify the constant in other bases as well:
+
+``` {.c}
+123              decimal
+0x123            hexadecimal
+0123             octal
+
+You can also specify floating constants in base-10 exponential notation:
+
+``` {.c}
+1.2e3            1.2 x 10^3
+```
+
+You can also specify them in hex! Except in this case the exponent is
+still in decimal, and the base is 2 instead of 10:
+
+``` {.c}
+0x1.2p3          0x1.2 x 2^3
+```
 
 ## Composite Types
 
