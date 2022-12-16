@@ -4,14 +4,12 @@
 
 TODO
 
-Operators:
-    Bitwise << >> & | ~ ^
-    Comparison < > <= >= != =
-    Compound Assignment:: bitwise, arithmetic
-    Comma: ,
+Constants
 
 Initializers
     In compound literals
+
+Compound Literals
 
 -->
 
@@ -106,6 +104,16 @@ int w = (++x) + (--y) + (++z);
 print("%d %d %d %d\n", x, y, z, w);  // 11 19 31 61
 ```
 
+### Comparison Operators
+
+All of these return a Boolean true-y or false-y value.
+
+Less than, greater than, and equal to are: `<`, `>`, `==`, respectively.
+
+Less than or equal to and greater than or equal to are `<=` and `>=`.
+
+Not equal to is `!=`.
+
 ### Pointer Operators
 
 `*` in front of a pointer variable dereferences that variable.
@@ -143,6 +151,37 @@ above line is equivalent to:
 ``` {.c}
 *(a + 10) = 99;
 ```
+
+### Bitwise Operators
+
+Bit shift right: `>>`, bit shift left: `<<`.
+
+```
+int i = x << 3;  // left shift 3 bits
+```
+
+Whether or not a right shift on a signed value is sign-extended is
+implementation-defined.
+
+Bitwise AND, OR, NOT, and XOR are `&`, `|`, `~`, and `^`, respectively.
+
+### Assignment Operators
+
+A standalone `=` is your basic assignment.
+
+But there are also compound assignments that are like a shorthand
+version. For example, these two are basically equivalent:
+
+``` {.c}
+x = x + 1;
+x += 1;
+```
+
+There are compound assignment operators for many of the other operators.
+
+Arithmetic: `+=`, `-=`, `*=`, `/=`, and `%=`.
+
+Bitwise: `|=`, `&=`, `~=`, and `^=`.
 
 ### The `sizeof` Operator
 
@@ -200,6 +239,24 @@ parenthesis. Unlike `sizeof`, the argument cannot be an expression.
 
 ``` {.c}
 printf("Alignment of int is %zu\n", alignof(int));
+```
+
+### Comma Operator
+
+You can separate subexpressions with commas, and each will be evaluated
+from left to right, and the value of the entire expression will be the
+value of the subexpression after the last comma.
+
+``` {.c}
+int x = (1, 2, 3);  // Silly way to assign `x = 3`
+```
+
+Usually this is used in the various clauses in loops. For example, we
+can do multiple assignments in a `for` loop, and have multiple post
+expressions like this:
+
+``` {.c}
+for (i = 2, j = 10; i < 100; i++, j += 4) { ... }
 ```
 
 ## Type Specifiers
