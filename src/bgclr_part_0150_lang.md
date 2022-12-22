@@ -1,14 +1,6 @@
 <!-- Beej's guide to C
 
 # vim: ts=4:sw=4:nosi:et:tw=72
-
-TODO
-
-Initializers
-    In compound literals
-
-Compound Literals
-
 -->
 
 # The C Language
@@ -461,15 +453,85 @@ int a[3] = {1};      // Same as {1, 0, 0}
 int a[3] = {0};      // Same as {0, 0, 0}
 ```
 
-bookmark
+Initializing pointer types:
 
+``` {.c}
+int q;
+int *p = &q;
+```
 
+Initializing `struct`s:
 
+``` {.c}
+struct s {
+    int a;
+    float b;
+};
+
+struct s x0 = {1, 2.2}; // Initialize fields in order
+
+struct s x0 = {.a=1, .b=2.2}; // Initialize fields by name
+struct s x0 = {.b=2.2, .a=1}; // Same thing
+
+struct s x0 = {.b=2.2}; // All other fields initialized to 0
+struct s x0 = {.b=2.2, .a-=0};  // Same thing
+```
+
+Initializing `union`s:
+
+``` {.c}
+union u {
+    int a;
+    float b;
+};
+
+union u x0 = {1};  // Initialize the first field (a)
+
+union u x0 = {.a=1};  // Initialize fields by name
+union u x0 = {.b=2.2};
+
+//union u x0 = {1, 2};       // ILLEGAL
+//union u x0 = {.a1, ,b=2};  // ILLEGAL
+```
 
 ## Compound Literals
 
 You can declare "unnamed" objects in C. This is often useful for passing
-a `struct` to 
+a `struct` to a function that otherwise doesn't need a name.
+
+You use the type name in parens followed by an initializer to make the
+object.
+
+Here's an example of passing a compound literal to a function. Note that
+there's no `struct s` variable in `main()`:
+
+``` {.c .numberLines}
+#include <stdio.h>
+
+struct s {
+    int a, b;
+};
+
+int add(struct s x)
+{
+    return x.a + x.b;
+}
+
+int main(void)
+{
+    int t = add((struct s){.a=2, .b=4});  // <-- Here
+
+    printf("%d\n", t);
+}
+```
+
+Compound literals have the lifetime of their scope.
+
+You can also pass a pointer to a compound literal by taking its address:
+
+``` {.c}
+foo(&(struct s){1, 2});
+```
 
 ## Type Aliases
 
