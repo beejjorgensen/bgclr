@@ -316,6 +316,7 @@ You can specify the constant in other bases as well:
 123              decimal
 0x123            hexadecimal
 0123             octal
+```
 
 You can also specify floating constants in base-10 exponential notation:
 
@@ -323,7 +324,7 @@ You can also specify floating constants in base-10 exponential notation:
 1.2e3            1.2 x 10^3
 ```
 
-You can also specify them in hex! Except in this case the exponent is
+And you can specify floats in hex! Except in this case the exponent is
 still in decimal, and the base is 2 instead of 10:
 
 ``` {.c}
@@ -896,7 +897,7 @@ int increment(int a)
 }
 ```
 
-## `_Statoic_assert` Statement
+## `_Static_assert` Statement
 
 This is a way to prevent _compilation_ of a program if a certain
 constant condition is not met.
@@ -951,7 +952,7 @@ The first form ignores all command line parameters.
 The second form stores the count of the command line parameters in
 `argc`, and stores the parameters themselves as an array of strings in
 `argv`. The first of these, `argv[0]`, is typically the name of the
-executable.
+executable. The last `argv` pointer has the value `NULL`.
 
 The return values usually show up as exit status codes in the OS.
 If there is no `return`, falling off the end of `main()` is an implied
