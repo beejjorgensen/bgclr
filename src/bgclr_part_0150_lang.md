@@ -4,8 +4,6 @@
 
 TODO
 
-Constants
-
 Initializers
     In compound literals
 
@@ -439,9 +437,39 @@ enum animal {
 As above, duplicate values are not illegal, but might be of marginal
 usefulness.
 
+## Initializers
+
+You can do this when the variable is defined, but not elsewhere.
+
+Initializing basic types:
+
+``` {.c}
+int x = 12;
+float y = 1.2;
+char c = 'a';
+char *s = "Hello, world!";
+```
+
+Initializing array types:
+
+``` {.c}
+int a[3] = {1,2,3};
+int a[] = {1,2,3};   // Same as a[3]
+
+int a[3] = {1, 2};   // Same as {1, 2, 0}
+int a[3] = {1};      // Same as {1, 0, 0}
+int a[3] = {0};      // Same as {0, 0, 0}
+```
+
+bookmark
+
+
+
+
 ## Compound Literals
 
-TODO
+You can declare "unnamed" objects in C. This is often useful for passing
+a `struct` to 
 
 ## Type Aliases
 
