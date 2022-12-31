@@ -64,7 +64,7 @@ function in the C Standard Library, complete with examples.
 > _"Ah, well in that case, sir, I hope you will not object if I also
 > offer the doctor my most enthusiastic contrafribularities."_
 >
-> --Blackadder toying with Dr. Samuel Johnson
+> ---Blackadder toying with Dr. Samuel Johnson
 
 There are, in fact, a number of functions left out of this guide, most
 notably all the optional "safe" functions (with a `_s` suffix).
