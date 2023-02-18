@@ -58,13 +58,13 @@ This isn't a tutorial, but rather is a comprehensive set of manual pages
 (or _man pages_ as Unix hackers like to say) that define _every_
 function in the C Standard Library, complete with examples.
 
-> "This book, sir, contains every word in our beloved language." 
-> "Every single one, sir?" 
-> "Every single one, sir!" 
-> "Ah, well in that case, sir, I hope you will not object if I also
-> offer the doctor my most enthusiastic contrafribularities." 
+> _"This book, sir, contains every word in our beloved language."_\
+> _"Every single one, sir?"_\
+> _"Every single one, sir!"_\
+> _"Ah, well in that case, sir, I hope you will not object if I also
+> offer the doctor my most enthusiastic contrafribularities."_
 >
-> --Blackadder toying with Dr. Samuel Johnson
+> ---Blackadder toying with Dr. Samuel Johnson
 
 There are, in fact, a number of functions left out of this guide, most
 notably all the optional "safe" functions (with a `_s` suffix).
