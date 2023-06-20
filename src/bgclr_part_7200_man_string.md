@@ -8,10 +8,10 @@
 
 |Function|Description|
 |-|-|
+|[`memccpy()`](#man-memcpy)|Copy a region of memory to another, stopping at a specified character.|
 |[`memchr()`](#man-strchr)|Find the first occurrence of a character in memory.|
 |[`memcmp()`](#man-strcmp)|Compare two regions of memory.|
 |[`memcpy()`](#man-memcpy)|Copy a region of memory to another.|
-|[`memccpy()`](#man-memcpy)|Copy a region of memory to another, stopping at a specified character.|
 |[`memmove()`](#man-memcpy)|Move a (potentially overlapping) region of memory.|
 |[`memset()`](#man-memset)|Set a region of memory to a value.|
 |[`memset_explicit()`](#man-memset)|Set a region of memory to a value in a manner that cannot be optimized away.|
@@ -21,11 +21,13 @@
 |[`strcoll()`](#man-strcoll)|Compare two strings accounting for locale.|
 |[`strcpy()`](#man-strcpy)|Copy a string.|
 |[`strcspn()`](#man-strspn)|Find length of a string not consisting of a set of characters.|
+|[`strdup()`](#man-strdup)|Duplicate a string on the heap.|
 |[`strerror()`](#man-strerror)|Return a human-readable error message for a given code.|
 |[`strlen()`](#man-strlen)|Return the length of a string.|
 |[`strncat()`](#man-strcat)|Concatenate (join) two strings, length-limited.|
 |[`strncmp()`](#man-strcmp)|Compare two strings, length-limited.|
 |[`strncpy()`](#man-strcpy)|Copy two strings, length-limited.|
+|[`strndup()`](#man-strdup)|Duplicate a string on the heap, length-limited.|
 |[`strpbrk()`](#man-strpbrk)|Search a string for one of a set of character.|
 |[`strrchr()`](#man-strchr)|Find the last occurrence of a character in a string.|
 |[`strspn()`](#man-strspn)|Find length of a string consisting of a set of characters.|
@@ -198,6 +200,82 @@ int main(void)
 [`memcpy()`](#man-memcpy),
 [`strcat()`](#man-strcat),
 [`strncat()`](#man-strcat)
+
+[[manbreak]]
+## `strdup()`, `strndup()` {#man-vprintf}
+
+[i[`strdup()` function]i]
+[i[`strndup()` function]i]
+
+Duplicate a string on the heap
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.c}
+
+#include <string.h>
+
+char *strdup(const char *s);
+
+char *strndup(const char *s, size_t size);
+```
+
+### Description {.unnumbered .unlisted}
+
+This is like `strcpy()`, except it allocates space for the new string,
+just as if it had been done with [`malloc()`](#man-malloc).
+
+The pointer to the duplicate string it returns should be freed up with a
+call to [`free()`](#man-free) once you're done with it.
+
+`strndup()` works the same way, except you can limit the number of bytes
+duplicated. `strndup()` always produces a NUL-terminated string.
+
+### Return Value {.unnumbered .unlisted}
+
+Both functions return a pointer to the newly created string, or `NULL`
+if the memory for the duplicate cannot be allocated.
+
+### Example {.unnumbered .unlisted}
+
+Here's an example that duplicates a string and then capitalizes the
+first letter of the duplicate.
+
+``` {.c}
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+char *dup_cap(const char *s)
+{
+    char *d = strdup(s);
+
+    if (d != NULL)
+        d[0] = toupper(d[0]);
+
+    return d;
+}
+
+int main(void)
+{
+    char *s = dup_cap("hello, world!");
+
+    if (s != NULL)
+        puts(s);  // Hello, world!
+    else
+        puts("Error duplicating string");
+
+    free(s);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`strcpy()`](#man-strcpy),
+[`strncpy()`](#man-strcpy),
+[`malloc()`](#man-malloc),
+[`free()`](#man-free)
 
 [[manbreak]]
 ## `strcat()`, `strncat()` {#man-strcat}

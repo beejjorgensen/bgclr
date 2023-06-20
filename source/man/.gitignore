@@ -198,6 +198,7 @@ strchr
 strcmp
 strcoll
 strcpy
+strdup
 strerror
 strftime
 strlen
