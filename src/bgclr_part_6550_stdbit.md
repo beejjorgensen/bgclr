@@ -421,6 +421,192 @@ int main(void)
 [`stdc_first_leading_one()`](#man-stdc_first_leading_one),
 [`stdc_first_trailing_zero()`](#man-stdc_first_trailing_zero)
 
+[[manbreak]]
+## `stdc_first_leading_one()` {#man-stdc_first_leading_one}
+
+[i[`stdc_first_leading_one()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdbit.h>
+
+unsigned int stdc_first_leading_one_uc(unsigned char value);
+unsigned int stdc_first_leading_one_us(unsigned short value);
+unsigned int stdc_first_leading_one_ui(unsigned int value);
+unsigned int stdc_first_leading_one_ul(unsigned long value);
+unsigned int stdc_first_leading_one_ull(unsigned long long value);
+
+generic_return_type stdc_first_leading_one(generic_value_type value);
+```
+
+### Description {.unnumbered .unlisted}
+
+This finds the index of the first leading one in a number. Indexes are
+numbered starting from `1` being the most significant ("leftmost") bit
+position. (This might be in contrast to how you might be used to
+numbering bit indexes.)
+
+It's one-based so that you can quickly use the return value as a
+Boolean expression for if it found a one bit or not.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the 1-based index from the most significant bit of the first
+one bit in the `value`, or `0` if there are no one bits.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <limits.h>
+#include <stdbit.h>
+
+int main(void)
+{
+    unsigned int value = UINT_MAX;
+    unsigned int index = stdc_first_leading_one_ui(value);
+
+    printf("%u\n", index);
+
+    unsigned long long value2 = UINT_MAX >> 2;
+    auto index2 = stdc_first_leading_one(value2);
+
+    printf("%u\n", index2);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`stdc_first_leading_zero()`](#man-stdc_first_leading_zero),
+[`stdc_first_trailing_one()`](#man-stdc_first_trailing_one)
+
+[[manbreak]]
+## `stdc_first_trailing_zero()` {#man-stdc_first_trailing_zero}
+
+[i[`stdc_first_trailing_zero()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdbit.h>
+
+unsigned int stdc_first_trailing_zero_uc(unsigned char value);
+unsigned int stdc_first_trailing_zero_us(unsigned short value);
+unsigned int stdc_first_trailing_zero_ui(unsigned int value);
+unsigned int stdc_first_trailing_zero_ul(unsigned long value);
+unsigned int stdc_first_trailing_zero_ull(unsigned long long value);
+
+generic_return_type stdc_first_trailing_zero(generic_value_type value);
+```
+
+### Description {.unnumbered .unlisted}
+
+This finds the index of the first trailing zero in a number. Indexes are
+numbered starting from `1` being the most significant ("leftmost") bit
+position. (This might be in contrast to how you might be used to
+numbering bit indexes.)
+
+It's one-based so that you can quickly use the return value as a
+Boolean expression for if it found a zero bit or not.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the 1-based index from the most significant bit of the first
+zero bit in the `value`, or `0` if there are no zero bits.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <limits.h>
+#include <stdbit.h>
+
+int main(void)
+{
+    unsigned int value = UINT_MAX;
+    unsigned int index = stdc_first_trailing_zero_ui(value);
+
+    printf("%u\n", index);
+
+    unsigned long long value2 = UINT_MAX >> 2;
+    auto index2 = stdc_first_trailing_zero(value2);
+
+    printf("%u\n", index2);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`stdc_first_leading_zero()`](#man-stdc_first_leading_zero),
+[`stdc_first_trailing_one()`](#man-stdc_first_trailing_one)
+
+[[manbreak]]
+## `stdc_first_trailing_one()` {#man-stdc_first_trailing_one}
+
+[i[`stdc_first_trailing_one()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdbit.h>
+
+unsigned int stdc_first_trailing_one_uc(unsigned char value);
+unsigned int stdc_first_trailing_one_us(unsigned short value);
+unsigned int stdc_first_trailing_one_ui(unsigned int value);
+unsigned int stdc_first_trailing_one_ul(unsigned long value);
+unsigned int stdc_first_trailing_one_ull(unsigned long long value);
+
+generic_return_type stdc_first_trailing_one(generic_value_type value);
+```
+
+### Description {.unnumbered .unlisted}
+
+This finds the index of the first trailing one in a number. Indexes are
+numbered starting from `1` being the most significant ("leftmost") bit
+position. (This might be in contrast to how you might be used to
+numbering bit indexes.)
+
+It's one-based so that you can quickly use the return value as a
+Boolean expression for if it found a one bit or not.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the 1-based index from the most significant bit of the first
+one bit in the `value`, or `0` if there are no one bits.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <limits.h>
+#include <stdbit.h>
+
+int main(void)
+{
+    unsigned int value = UINT_MAX;
+    unsigned int index = stdc_first_trailing_one_ui(value);
+
+    printf("%u\n", index);
+
+    unsigned long long value2 = UINT_MAX >> 2;
+    auto index2 = stdc_first_trailing_one(value2);
+
+    printf("%u\n", index2);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`stdc_first_leading_one()`](#man-stdc_first_leading_one),
+[`stdc_first_trailing_zero()`](#man-stdc_first_trailing_zero)
+
 <!--
 [[manbreak]]
 ## `example()` {#man-example}

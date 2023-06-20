@@ -261,9 +261,11 @@ wmemcpy
 wprintf
 wscanf
 endianess
+stdc_first_leading_one
+stdc_first_leading_zero
+stdc_first_trailing_one
+stdc_first_trailing_zero
 stdc_leading_ones
 stdc_leading_zeros
-stdc_trailing_zeros
 stdc_trailing_ones
-stdc_first_leadiong_zero
-
+stdc_trailing_zeros
