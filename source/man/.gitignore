@@ -264,3 +264,5 @@ endianess
 stdc_leading_ones
 stdc_leading_zeros
 stdc_trailing_zeros
+stdc_trailing_ones
+

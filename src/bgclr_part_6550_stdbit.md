@@ -303,6 +303,62 @@ int main(void)
 [`stdc_trailing_ones()`](#man-stdc_trailing_ones),
 [`stdc_leading_zeros()`](#man-stdc_leading_zeros)
 
+[[manbreak]]
+## `stdc_trailing_ones()` {#man-stdc_trailing_ones}
+
+[i[`stdc_trailing_ones()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdbit.h>
+
+unsigned int stdc_trailing_ones_uc(unsigned char value);
+unsigned int stdc_trailing_ones_us(unsigned short value);
+unsigned int stdc_trailing_ones_ui(unsigned int value);
+unsigned int stdc_trailing_ones_ul(unsigned long value);
+unsigned int stdc_trailing_ones_ull(unsigned long long value);
+
+generic_return_type stdc_trailing_ones(generic_value_type value);
+```
+
+### Description {.unnumbered .unlisted}
+
+This function returns the number of trailing ones on a particular value,
+starting from the least-significant bit. The number will be influenced by
+the size of the argument.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the number of trailing ones.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <stdbit.h>
+
+int main(void)
+{
+    unsigned int value = 3490;
+    unsigned int count = stdc_trailing_ones_ui(value);
+
+    printf("%d\n", count);
+
+    unsigned long long value2 = 3490;
+    auto count2 = stdc_trailing_ones(value2);
+
+    printf("%d\n", count2);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`stdc_trailing_zeros()`](#man-stdc_trailing_zeros),
+[`stdc_leading_ones()`](#man-stdc_leading_ones)
+
 <!--
 [[manbreak]]
 ## `example()` {#man-example}
