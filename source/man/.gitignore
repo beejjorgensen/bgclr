@@ -260,3 +260,7 @@ wctype
 wmemcpy
 wprintf
 wscanf
+endianess
+stdc_leading_ones
+stdc_leading_zeros
+stdc_trailing_zeros
