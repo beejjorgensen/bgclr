@@ -62,6 +62,8 @@ Copy bytes of memory from one location to another
 
 ### Synopsis {.unnumbered .unlisted}
 
+`memccpy()` is new in C23!
+
 ``` {.c}
 #include <string.h>
 
@@ -211,8 +213,9 @@ Duplicate a string on the heap
 
 ### Synopsis {.unnumbered .unlisted}
 
-``` {.c}
+New in C23!
 
+``` {.c}
 #include <string.h>
 
 char *strdup(const char *s);
@@ -1014,6 +1017,8 @@ Word: "dude"
 Set a region of memory to a certain value
 
 ### Synopsis {.unnumbered .unlisted}
+
+`memset_explicit()` is new in C23!
 
 ``` {.c}
 #include <string.h>
