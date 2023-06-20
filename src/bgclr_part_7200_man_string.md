@@ -13,6 +13,7 @@
 |[`memcpy()`](#man-memcpy)|Copy a region of memory to another.|
 |[`memmove()`](#man-memcpy)|Move a (potentially overlapping) region of memory.|
 |[`memset()`](#man-memset)|Set a region of memory to a value.|
+|[`memset_explicit()`](#man-memset)|Set a region of memory to a value.|
 |[`strcat()`](#man-strcat)|Concatenate (join) two strings together.|
 |[`strchr()`](#man-strchr)|Find the first occurrence of a character in a string.|
 |[`strcmp()`](#man-strcmp)|Compare two strings.|
@@ -918,9 +919,10 @@ Word: "dude"
 
 
 [[manbreak]]
-## `memset()` {#man-memset}
+## `memset()`, `memset_explicit {#man-memset}
 
 [i[`memset()` function]i]
+[i[`memset_explicit()` function]i]
 
 Set a region of memory to a certain value
 
@@ -930,6 +932,8 @@ Set a region of memory to a certain value
 #include <string.h>
 
 void *memset(void *s, int c, size_t n);
+
+void *memset_explicit(void *s, int c, size_t n);
 ```
 ### Description {.unnumbered .unlisted}
 
@@ -938,9 +942,15 @@ value, namely `c` converted into `unsigned char`.
 
 The most common usage is to zero out an array or `struct`.
 
+`memset_explicit()` only differs in that it will never be optimized away
+(like `memset()` might be). The idea is that you could use it to
+most-definitely remove sensitive information (like passwords) from
+memory before any nasty hackers get their hands on it.
+
 ### Return Value {.unnumbered .unlisted}
 
-`memset()` returns whatever you passed in as `s` for happy convenience.
+`memset()` and `memset_explicit()` return whatever you passed in as `s`
+for happy convenience.
 
 ### Example {.unnumbered .unlisted}
 
