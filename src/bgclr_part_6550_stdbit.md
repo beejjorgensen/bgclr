@@ -177,12 +177,12 @@ int main(void)
     unsigned int value = 3490;
     unsigned int count = stdc_leading_zeros_ui(value);
 
-    printf("%d\n", count);
+    printf("%u\n", count);
 
     unsigned long long value2 = 3490;
     auto count2 = stdc_leading_zeros(value2);
 
-    printf("%d\n", count2);
+    printf("%u\n", count2);
 }
 ```
 
@@ -233,12 +233,12 @@ int main(void)
     unsigned int value = 3490;
     unsigned int count = stdc_leading_ones_ui(value);
 
-    printf("%d\n", count);
+    printf("%u\n", count);
 
     unsigned long long value2 = 3490;
     auto count2 = stdc_leading_ones(value2);
 
-    printf("%d\n", count2);
+    printf("%u\n", count2);
 }
 ```
 
@@ -289,12 +289,12 @@ int main(void)
     unsigned int value = 3490;
     unsigned int count = stdc_trailing_zeros_ui(value);
 
-    printf("%d\n", count);
+    printf("%u\n", count);
 
     unsigned long long value2 = 3490;
     auto count2 = stdc_trailing_zeros(value2);
 
-    printf("%d\n", count2);
+    printf("%u\n", count2);
 }
 ```
 
@@ -345,12 +345,12 @@ int main(void)
     unsigned int value = 3490;
     unsigned int count = stdc_trailing_ones_ui(value);
 
-    printf("%d\n", count);
+    printf("%u\n", count);
 
     unsigned long long value2 = 3490;
     auto count2 = stdc_trailing_ones(value2);
 
-    printf("%d\n", count2);
+    printf("%u\n", count2);
 }
 ```
 
@@ -358,6 +358,68 @@ int main(void)
 
 [`stdc_trailing_zeros()`](#man-stdc_trailing_zeros),
 [`stdc_leading_ones()`](#man-stdc_leading_ones)
+
+[[manbreak]]
+## `stdc_first_leading_zero()` {#man-stdc_first_leading_zero}
+
+[i[`stdc_first_leading_zero()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdbit.h>
+
+unsigned int stdc_first_leading_zero_uc(unsigned char value);
+unsigned int stdc_first_leading_zero_us(unsigned short value);
+unsigned int stdc_first_leading_zero_ui(unsigned int value);
+unsigned int stdc_first_leading_zero_ul(unsigned long value);
+unsigned int stdc_first_leading_zero_ull(unsigned long long value);
+
+generic_return_type stdc_first_leading_zero(generic_value_type value);
+```
+
+### Description {.unnumbered .unlisted}
+
+This finds the index of the first leading zero in a number. Indexes are
+numbered starting from `1` being the most significant ("leftmost") bit
+position. (This might be in contrast to how you might be used to
+numbering bit indexes.)
+
+It's one-based so that you can quickly use the return value as a
+Boolean expression for if it found a zero bit or not.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the 1-based index from the most significant bit of the first
+zero bit in the `value`, or `0` if there are no zero bits.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <limits.h>
+#include <stdbit.h>
+
+int main(void)
+{
+    unsigned int value = UINT_MAX;
+    unsigned int index = stdc_first_leading_zero_ui(value);
+
+    printf("%u\n", index);
+
+    unsigned long long value2 = UINT_MAX >> 2;
+    auto index2 = stdc_first_leading_zero(value2);
+
+    printf("%u\n", index2);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`stdc_first_leading_one()`](#man-stdc_first_leading_one),
+[`stdc_first_trailing_zero()`](#man-stdc_first_trailing_zero)
 
 <!--
 [[manbreak]]
