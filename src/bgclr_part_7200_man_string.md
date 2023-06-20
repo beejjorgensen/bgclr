@@ -11,9 +11,10 @@
 |[`memchr()`](#man-strchr)|Find the first occurrence of a character in memory.|
 |[`memcmp()`](#man-strcmp)|Compare two regions of memory.|
 |[`memcpy()`](#man-memcpy)|Copy a region of memory to another.|
+|[`memccpy()`](#man-memcpy)|Copy a region of memory to another, stopping at a specified character.|
 |[`memmove()`](#man-memcpy)|Move a (potentially overlapping) region of memory.|
 |[`memset()`](#man-memset)|Set a region of memory to a value.|
-|[`memset_explicit()`](#man-memset)|Set a region of memory to a value.|
+|[`memset_explicit()`](#man-memset)|Set a region of memory to a value in a manner that cannot be optimized away.|
 |[`strcat()`](#man-strcat)|Concatenate (join) two strings together.|
 |[`strchr()`](#man-strchr)|Find the first occurrence of a character in a string.|
 |[`strcmp()`](#man-strcmp)|Compare two strings.|
@@ -49,9 +50,10 @@ strings, concatenating strings together, getting the length of a string,
 and so forth and so on.
 
 [[manbreak]]
-## `memcpy()`, `memmove()` {#man-memcpy}
+## `memcpy()`, `memccpy()`, `memmove()` {#man-memcpy}
 
 [i[`memcpy()` function]i]
+[i[`memccpy()` function]i]
 [i[`memmove()` function]i]
 
 Copy bytes of memory from one location to another
@@ -63,19 +65,26 @@ Copy bytes of memory from one location to another
 
 void *memcpy(void * restrict s1, const void * restrict s2, size_t n);
 
+void *memccpy(void * restrict s1, const void * restrict s2, int c,
+              size_t n);
+
 void *memmove(void *s1, const void *s2, size_t n);
 ```
 
 ### Description {.unnumbered .unlisted}
 
 These functions copy memory---as many bytes as you want! From source to
-destination!
+destination for as many bytes as you specify!
 
-The main difference between the two is that `memcpy()` cannot safely
-copy overlapping memory regions, whereas `memmove()` can.
+`memccpy()` gives you the additional option of stopping after a certain
+character is encountered in the source.
 
-On the one hand, I'm not sure why you'd want to ever use `memcpy()`
-instead of `memmove()`, but I'll bet it's possibly more performant.
+The main difference between the `memcpy()` variants and `memmove()` is
+that the former cannot safely copy overlapping memory regions, whereas
+the latter can.
+
+I'm not sure why you'd want to ever use `memcpy()` instead of
+`memmove()`, but I'll bet it's possibly more performant.
 
 The parameters are in a particular order: destination first, then
 source. I remember this order because it behaves like an "`=`"
