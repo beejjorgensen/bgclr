@@ -157,6 +157,7 @@ mbsrtowcs
 mbsrtowcs2
 mbstowcs
 mbtowc
+memalignment
 memcpy_memmove
 memset
 mktime

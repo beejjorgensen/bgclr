@@ -2224,6 +2224,85 @@ Byte count : 16
 [`mbstowcs()`](#man-mbstowcs),
 [`setlocale()`](#man-setlocale)
 
+[[manbreak]]
+## `memalignment()` {#man-memalignment}
+
+[i[`memalignment()` function]i]
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <stdlib.h>
+
+size_t memalignment(const void * p);
+```
+
+### Description {.unnumbered .unlisted}
+
+This function will give you the memory alignment (in bytes) of the
+object pointed to.
+
+The idea is that we're going to get the same information as we get with
+[`alignof`](#man-alignof), except we can do it with an untyped `void*`.
+
+And you might want to do this because misaligned data could be slower or
+unusable on various platforms.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the integer alignment of `p`, which will be a power of 2.
+Returns `0` if `NULL` is passed in. 
+
+`0` means the pointer can't be used to access an object of any type.
+
+### Example {.unnumbered .unlisted}
+
+(Caveat: none of my compilers support this function yet, so the code is
+largely untested.)
+
+The proposal for this feature suggests that a macro might be useful for
+determining if a pointer is well-aligned for a particular type, so we'll
+just steal that as an example:
+
+``` {.c}
+#include <stdio.h>
+#include <stdalign.h>
+#include <stdlib.h>
+
+#define isaligned(P, T) (memalignment (P) >= alignof(T))
+
+void check(void *p)
+{
+    printf("%lu %lu\n", memalignment(p), alignof(int));
+    if (isaligned(p, int)) {
+        puts("The pointer p is well-aligned for an int! :)");
+
+        // So I'm happy doing this:
+
+        int *i = p;
+        *i = 3490;
+
+    } else
+        puts("The pointer p is poorly-aligned for an int! :(");
+}
+
+int main(void)
+{
+    char *p = malloc(10);
+
+    check(p);
+    check(p + 1);
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`alignof()`](#man-alignof),
+[`alignas()`](#man-alignas),
+[`max_align_t`](#man-max_align_t)
+
 <!--
 [[manbreak]]
 ## `example()`, `example()`, `example()` {#man-example}

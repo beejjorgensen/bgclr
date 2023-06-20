@@ -138,7 +138,8 @@ f: 0x7ffee7dfb4a6
 ### See Also {.unnumbered .unlisted}
 
 [`alignof`](#man-alignof),
-[`max_align_t`](#man-max_align_t)
+[`max_align_t`](#man-max_align_t),
+[`memalignment()`](#man-memalignment)
 
 [[manbreak]]
 ## `alignof()` `_Alignof()` {#man-alignof}
@@ -217,7 +218,8 @@ max_align_t: 16
 ### See Also {.unnumbered .unlisted}
 
 [`alignas`](#man-alignas),
-[`max_align_t`](#man-max_align_t)
+[`max_align_t`](#man-max_align_t),
+[`memalignment()`](#man-memalignment)
 
 <!--
 [[manbreak]]
