@@ -1235,6 +1235,8 @@ Thread 1: releasing lock...
 [[manbreak]]
 ## `example()` {#man-example}
 
+[i[`example()` function]i]
+
 ### Synopsis {.unnumbered .unlisted}
 
 ``` {.c}
