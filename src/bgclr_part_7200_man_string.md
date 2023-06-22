@@ -204,7 +204,7 @@ int main(void)
 [`strncat()`](#man-strcat)
 
 [[manbreak]]
-## `strdup()`, `strndup()` {#man-vprintf}
+## `strdup()`, `strndup()` {#man-strdup}
 
 [i[`strdup()` function]i]
 [i[`strndup()` function]i]
