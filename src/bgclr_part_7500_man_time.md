@@ -227,7 +227,7 @@ Output:
 
 [i[`mktime()` function]i]
 
-Convert a `struct tm` into a `time_t`
+Convert a `struct tm` with local time into a `time_t`
 
 ### Synopsis {.unnumbered .unlisted}
 
@@ -255,7 +255,8 @@ A couple notes:
   Saving Time (DST), `1` to indicate it is, and `-1` to have `mktime()`
   fill it in according to your locale's preference.
 
-If you need input in UTC, see the non-standard functions
+If you don't have a C23 compiler and you need input in UTC, see the
+non-standard functions
 [fl[`timegm()`|https://man.archlinux.org/man/timegm.3.en]] for
 Unix-likes and
 [fl[`_mkgmtime()`|https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/mkgmtime-mkgmtime32-mkgmtime64?view=msvc-160]]
@@ -315,8 +316,98 @@ UTC        : Mon Apr 12 12:00:04 1982
 
 ### See Also {.unnumbered .unlisted}
 
+[`timegm()`](#man-timegm),
 [`localtime()`](#man-localtime),
 [`gmtime()`](#man-gmtime)
+
+
+[[manbreak]]
+## `timegm()` {#man-timegm}
+
+[i[`timegm()` function]i]
+
+Convert a `struct tm` with UTC time into a `time_t`
+
+### Synopsis {.unnumbered .unlisted}
+
+New in C23!
+
+``` {.c}
+#include <time.h>
+
+time_t timegm(struct tm *timeptr);
+```
+
+### Description {.unnumbered .unlisted}
+
+If you have a UTC date and time and want it converted to a `time_t`
+(so that you can `difftime()` it or whatever), you can convert it with
+this function.
+
+Basically you fill out the fields in your `struct tm` in local time and
+`mktime()` will convert those to the UTC `time_t` equivalent.
+
+A couple notes:
+
+* Don't bother filling out `tm_wday` or `tm_yday`. `mktime()` will fill
+  these out for you.
+
+* The spec doesn't say anything about the `tm_isdst` Daylight Saving
+  flag, but since UTC is immune to DST, I'm assuming it is ignored or
+  set to `0` for us.
+
+If you don't have a C23 compiler and you need input in UTC, see the
+non-standard functions
+[fl[`timegm()`|https://man.archlinux.org/man/timegm.3.en]] for
+Unix-likes and
+[fl[`_mkgmtime()`|https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/mkgmtime-mkgmtime32-mkgmtime64?view=msvc-160]]
+for Windows.
+
+### Return Value {.unnumbered .unlisted}
+
+Returns the UTC time in the `struct tm` as a `time_t` calendar time.
+
+Returns `(time_t)(-1)` on error.
+
+### Example {.unnumbered .unlisted}
+
+``` {.c .numberLines}
+#include <stdio.h>
+#include <time.h>
+
+int main(void)
+{
+    struct tm broken_down_time = {
+        .tm_year=82,   // years since 1900
+        .tm_mon=3,     // months since January -- [0, 11]
+        .tm_mday=12,   // day of the month -- [1, 31]
+        .tm_hour=4,    // hours since midnight -- [0, 23]
+        .tm_min=00,    // minutes after the hour -- [0, 59]
+        .tm_sec=04,    // seconds after the minute -- [0, 60]
+        .tm_isdst=-1,  // Daylight Saving Time flag
+    };
+
+    time_t calendar_time = timegm(&broken_down_time);
+
+    char *days[] = {"Sunday", "Monday", "Tuesday",
+        "Wednesday", "Furzeday", "Friday", "Saturday"};
+
+    // This will print what was in broken_down_time
+    printf("UTC        : %s", asctime(gmtime(&calendar_time)));
+    printf("Day of week: %s\n\n", days[broken_down_time.tm_wday]);
+
+    // This will print UTC for the local time, above
+    printf("Local time : %s", asctime(localtime(&calendar_time)));
+}
+```
+
+### See Also {.unnumbered .unlisted}
+
+[`mktime()`](#man-mktime),
+[`timegm()`](#man-timegm),
+[`localtime()`](#man-localtime),
+[`gmtime()`](#man-gmtime)
+
 
 [[manbreak]]
 ## `time()` {#man-time}
