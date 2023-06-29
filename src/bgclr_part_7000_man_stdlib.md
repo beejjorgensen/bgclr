@@ -418,6 +418,9 @@ digits running from `0` to `Z`.
 If you specify a base of `0`, the function will make an effort to
 determine it. It'll default to base 10 except for a couple cases:
 
+The binary conversion is new in C23!
+
+* If the number has a leading `0b` or `0B`, it will be binary (base 2)
 * If the number has a leading `0`, it will be octal (base 8)
 * If the number has a leading `0x` or `0X`, it will be hex (base 16)
 
