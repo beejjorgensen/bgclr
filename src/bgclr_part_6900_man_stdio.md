@@ -1000,14 +1000,18 @@ what type it can print, but it can also print anything that gets
 promoted to that type. For example, `%d` can print `int`, `short`, and
 `char`.
 
+The binary specifier is new in C23!
+
 |Conversion Specifier|Description|
 |:--:|--------------------------|
 |`d`|Print an `int` argument as a decimal number.|
 |`i`|Identical to `d`.|
+|`b`|Print an `unsigned int` in binary (base 2).|
+|`B`|Identical to `b`, except for the alternate form, below.|
 |`o`|Print an `unsigned int` in octal (base 8).|
 |`u`|Print an `unsigned int` in decimal.|
 |`x`|Print an `unsigned int` in hexadecimal with lowercase letters.|
-|`X`|Print an `unsigned int` in hexadecimal with uppercase letters.|
+|`X`|Print an `unsigned int` in hexadecimal with uppercase letters; also note the alternate form, below.|
 |`f`|Print a `double` in decimal notation. Infinity is printed as `infinity` or `inf`, and NaN is printed as `nan`, any of which could have a leading minus sign.|
 |`F`|Same as `f`, except it prints out `INFINITY`, `INF`, or `NAN` in all caps.|
 |`e`|Print a number in scientific notation, e.g. `1.234e56`. Does infinity and NaN like `f`.|
@@ -1104,13 +1108,13 @@ printf("%lld\n", x);  // 3490
 
 |Length Modifier|Conversion Specifier|Description|
 |:--:|:-----:|------------------|
-|`hh`|`d`, `i`, `o`, `u`, `x`, `X`|Convert argument to `char` (signed or unsigned as appropriate) before printing.|
-|`h`|`d`, `i`, `o`, `u`, `x`, `X`|Convert argument to `short int` (signed or unsigned as appropriate) before printing.|
-|`l`|`d`, `i`, `o`, `u`, `x`, `X`|Argument is a `long int` (signed or unsigned as appropriate).|
-|`ll`|`d`, `i`, `o`, `u`, `x`, `X`|Argument is a `long long int` (signed or unsigned as appropriate).|
-|`j`|`d`, `i`, `o`, `u`, `x`, `X`|Argument is a `intmax_t` or `uintmax_t` (as appropriate).|
-|`z`|`d`, `i`, `o`, `u`, `x`, `X`|Argument is a `size_t`.|
-|`t`|`d`, `i`, `o`, `u`, `x`, `X`|Argument is a `ptrdiff_t`.|
+|`hh`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert argument to `char` (signed or unsigned as appropriate) before printing.|
+|`h`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert argument to `short int` (signed or unsigned as appropriate) before printing.|
+|`l`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Argument is a `long int` (signed or unsigned as appropriate).|
+|`ll`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Argument is a `long long int` (signed or unsigned as appropriate).|
+|`j`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Argument is a `intmax_t` or `uintmax_t` (as appropriate).|
+|`z`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Argument is a `size_t`.|
+|`t`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Argument is a `ptrdiff_t`.|
 |`L`|`a`, `A`, `e`, `E`, `f`, `F`, `g`, `G`|Argument is a `long double`.|
 |`l`|`c`|Argument is in a `wint_t`,  a wide character.|
 |`l`|`s`|Argument is in a `wchar_t*`,  a wide character string.|
@@ -1141,7 +1145,7 @@ printf("%.2f\n", pi);  // 3.14
 
 |Conversion Specifier|Precision Value Meaning|
 |:-------:|---------------------|
-|`d`, `i`, `o`, `u`, `x`, `X`|For integer types, minimum number of digits (will pad with leading zeros)|
+|`b`, `d`, `i`, `o`, `u`, `x`, `X`|For integer types, minimum number of digits (will pad with leading zeros)|
 |`a`, `e`, `f`, `A`, `E`, `F`|For floating types, the precision is the number of digits past the decimal.|
 |`g`, `G`|For floating types, the precision is the number of significant digits printed.|
 |`s`|The maximum number of bytes (not multibyte characters!) to be written.|
@@ -1237,6 +1241,8 @@ The `#` "alternate form" result depends on the conversion specifier.
 |Conversion Specifier|Alternate Form (`#`) Meaning|
 |:---------:|---------------------------------------|
 |`o`|Increase precision of a non-zero number just enough to get one leading `0` on the octal number.|
+|`b`|Prefix a non-zero number with `0b`.|
+|`B`|Same as `b`, except capital `0B`.|
 |`x`|Prefix a non-zero number with `0x`.|
 |`X`|Same as `x`, except capital `0X`.|
 |`a`, `e`, `f`|Always print a decimal point, even if nothing follows it.|
@@ -1479,7 +1485,8 @@ variable `scanf()` should be reading into, like `%d` or `%f`.
 |Conversion Specifier|Description|
 |:--:|--------------------------|
 |`d`|Matches a decimal `int`. Can have a leading sign.|
-|`i`|Like `d`, except will handle it if you put a leading `0x` (hex) or `0` (octal) on the number.|
+|`b`|Matches a binary (base 2) `unsigned int`. Can have a leading sign.|
+|`i`|Like `d`, except will handle it if you put a leading `0x` (hex) or `0` (octal) or `0b` (binary) on the number.|
 |`o`|Matches an octal (base 8) `unsigned int`. Leading zeros are ignored.|
 |`u`|Matches a decimal `unsigned int`.|
 |`x`|Matches a hex (base 16) `unsigned int`.|
@@ -1536,13 +1543,13 @@ following is a table of the possible modifiers:
 
 |Length Modifier|Conversion Specifier|Description|
 |:--:|:-----:|------------------|
-|`hh`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `char` (signed or unsigned as appropriate) before printing.|
-|`h`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `short int` (signed or unsigned as appropriate) before printing.|
-|`l`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `long int` (signed or unsigned as appropriate).|
-|`ll`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `long long int` (signed or unsigned as appropriate).|
-|`j`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `intmax_t` or `uintmax_t` (as appropriate).|
-|`z`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `size_t`.|
-|`t`|`d`, `i`, `o`, `u`, `x`, `X`|Convert input to `ptrdiff_t`.|
+|`hh`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `char` (signed or unsigned as appropriate) before printing.|
+|`h`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `short int` (signed or unsigned as appropriate) before printing.|
+|`l`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `long int` (signed or unsigned as appropriate).|
+|`ll`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `long long int` (signed or unsigned as appropriate).|
+|`j`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `intmax_t` or `uintmax_t` (as appropriate).|
+|`z`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `size_t`.|
+|`t`|`b`, `d`, `i`, `o`, `u`, `x`, `X`|Convert input to `ptrdiff_t`.|
 |`L`|`a`, `A`, `e`, `E`, `f`, `F`, `g`, `G`|Convert input to `long double`.|
 |`l`|`c`,`s`,`[`|Convert input to `wchar_t`,  a wide character.|
 |`l`|`s`|Argument is in a `wchar_t*`,  a wide character string.|
