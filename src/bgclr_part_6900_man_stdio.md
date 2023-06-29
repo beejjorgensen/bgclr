@@ -1482,6 +1482,8 @@ Let's start with the best and last: the _conversion specifier_.
 This is the part of the format specifier that tells us what type of
 variable `scanf()` should be reading into, like `%d` or `%f`.
 
+The binary conversion is new in C23!
+
 |Conversion Specifier|Description|
 |:--:|--------------------------|
 |`d`|Matches a decimal `int`. Can have a leading sign.|
