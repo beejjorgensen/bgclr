@@ -666,6 +666,8 @@ Find a character in a string
 ### Synopsis {.unnumbered .unlisted}
 
 ``` {.c}
+// Pre-C23:
+
 #include <string.h>
 
 char *strchr(char *str, int c);
@@ -673,6 +675,15 @@ char *strchr(char *str, int c);
 char *strrchr(char *str, int c);
 
 void *memchr(const void *s, int c, size_t n);
+
+
+// C23:
+
+QChar *strchr(QChar *s, int c);
+
+QChar *strrchr(QChar *s, int c);
+
+QVoid *memchr(QVoid *s, int c, size_t n);
 ```
 
 ### Description {.unnumbered .unlisted}
@@ -824,7 +835,13 @@ Search a string for one of a set of characters
 ``` {.c}
 #include <string.h>
 
+// Pre-C23:
+
 char *strpbrk(const char *s1, const char *s2);
+
+// C23:
+
+QChar *strpbrk(QChar *s1, const char *s2);
 ```
 
 ### Description {.unnumbered .unlisted}
@@ -878,7 +895,13 @@ Find a string in another string
 ``` {.c}
 #include <string.h>
 
+// Pre-C23:
+
 char *strstr(const char *str, const char *substr);
+
+// C23:
+
+QChar *strstr(QChar *s1, const char *s2);
 ```
 
 ### Description {.unnumbered .unlisted}

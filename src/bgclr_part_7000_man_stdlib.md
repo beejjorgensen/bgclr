@@ -1423,9 +1423,16 @@ Binary Search (maybe) an array of objects
 ``` {.c}
 #include <stdlib.h>
 
+// Pre-C23:
+
 void *bsearch(const void *key, const void *base,
               size_t nmemb, size_t size,
               int (*compar)(const void *, const void *));
+// C23:
+
+QVoid *bsearch(const void *key, QVoid *base,
+               size_t nmemb, size_t size,
+               int (*compar)(const void *, const void *));
 ```
 
 ### Description {.unnumbered .unlisted}
@@ -1470,6 +1477,9 @@ And that's not as scary as it looks. Jump down to the example
 
 The function returns a pointer to the found value, or `NULL` if it can't
 be found.
+
+New in C23: If `base` is `const`, the return type of the `bsearch()`
+function will also be `const`.
 
 ### Example {.unnumbered .unlisted}
 

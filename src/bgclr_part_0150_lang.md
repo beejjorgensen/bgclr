@@ -647,6 +647,54 @@ compiler that reads or writes to this type should happen atomically.
 (This might be accomplished with a lock depending on the platform and
 type.)
 
+#### C23 Qualified Pseudo-Types: `QVoid*`, `QChar*`, etc.
+
+There are some generic functions in C23 that will return a
+`const`-qualified type if one of the parameters is `const`, but not
+otherwise.
+
+The spec makes up a fake type for this, with a `Q` at the front (for
+"qualified"). This is not a real type and will not compile---it's just
+for documentation purposes.
+
+These pseudotypes are:
+
+* `QVoid *`
+* `QChar *`
+* `QWchar_t *`
+
+For example, the `strchr()` function, which searches a string for a
+character, has this prototype in the spec:
+
+``` {.c}
+QChar *strchr(QChar *s, int c);
+```
+
+What is it? It basically means that if `s` is type `const char *`, then
+the return type of the function will also be `const char *`.
+
+If `s` is merely `char *`, the return type of the function will merely
+be `char *`.
+
+In other words, the `const`-ness of `s` is preserved in the return
+value.
+
+Another way to look at it is that this:
+
+``` {.c}
+QChar *strchr(QChar *s, int c);
+```
+
+is the same as:
+
+``` {.c}
+char *strchr(char *s, int c);
+const char *strchr(const char *s, int c);
+```
+
+The TLDR is when you see this, drop the leading `Q` and change the next
+letter to lowercase and you're there.
+
 ### Function Specifiers
 
 These are used on functions to provide additional guidance for the
