@@ -25,10 +25,13 @@
 
 There are two types defined in this header:
 
+[i[`fenv_t` type]i]
+[i[`fexcept_t` type]i]
+
 |Type|Description|
 |--------|----------------------|
-|[i[`fenv_t` type]i]`fenv_t`|The entire floating point environment|
-|[i[`fexcept_t` type]i]`fexcept_t`|A set of floating point exceptions|
+|`fenv_t`|The entire floating point environment|
+|`fexcept_t`|A set of floating point exceptions|
 
 The "environment" can be thought of as the status at this moment of the
 floating point processing system: this includes the exceptions,
@@ -39,14 +42,21 @@ If the functions in question exist on your system (they might not be!),
 then you'll also have these macros defined to represent different
 exceptions:
 
+[i[`FE_DIVBYZERO` macro]i]
+[i[`FE_INEXACT` macro]i]
+[i[`FE_INVALID` macro]i]
+[i[`FE_OVERFLOW` macro]i]
+[i[`FE_UNDERFLOW` macro]i]
+[i[`FE_ALL_EXCEPT` macro]i]
+
 |Macro|Description|
 |--------|----------------------|
-|[i[`FE_DIVBYZERO` macro]i]`FE_DIVBYZERO`|Division by zero|
-|[i[`FE_INEXACT` macro]i]`FE_INEXACT`|Result was not exact, was rounded|
-|[i[`FE_INVALID` macro]i]`FE_INVALID`|Domain error|
-|[i[`FE_OVERFLOW` macro]i]`FE_OVERFLOW`|Numeric overflow|
-|[i[`FE_UNDERFLOW` macro]i]`FE_UNDERFLOW`|Numeric underflow|
-|[i[`FE_ALL_EXCEPT` macro]i]`FE_ALL_EXCEPT`|All of the above combined|
+|`FE_DIVBYZERO`|Division by zero|
+|`FE_INEXACT`|Result was not exact, was rounded|
+|`FE_INVALID`|Domain error|
+|`FE_OVERFLOW`|Numeric overflow|
+|`FE_UNDERFLOW`|Numeric underflow|
+|`FE_ALL_EXCEPT`|All of the above combined|
 
 The idea is that you can bitwise-OR these together to represent multiple
 exceptions, e.g. `FE_INVALID|FE_OVERFLOW`.

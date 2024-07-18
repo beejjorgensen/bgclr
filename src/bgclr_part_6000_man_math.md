@@ -189,10 +189,13 @@ following^[Though the system defines `MATH_ERRNO` as `1` and
 `MATH_ERREXCEPT` as `2`, it's best to always use their symbolic names.
 Just in case.]:
 
+[i[`MATH_ERRNO` macro]i]
+[i[`MATH_ERREXCEPT` macro]i]
+
 |`math_errhandling`|Description|
 |-|-|
-|[i[`MATH_ERRNO` macro]i]`MATH_ERRNO`|The system uses `errno` for math errors.|
-|[i[`MATH_ERREXCEPT` macro]i]`MATH_ERREXCEPT`|The system uses exceptions for math errors.|
+|`MATH_ERRNO`|The system uses `errno` for math errors.|
+|`MATH_ERREXCEPT`|The system uses exceptions for math errors.|
 |`MATH_ERRNO | MATH_ERREXCEPT`|The system does both! (That's a bitwise-OR!)|
 
 You are not allowed to change `math_errhandling`.

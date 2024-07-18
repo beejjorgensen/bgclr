@@ -21,12 +21,17 @@ state variable (of type `mbstate_t`) per call.
 
 This header file defines four types.
 
+[i[`char16_t` type]i]
+[i[`char32_t` type]i]
+[i[`mbstate_t` type]i]
+[i[`size_t` type]i]
+
 |Type|Description|
 |------|----------------------|
-|[i[`char16_t` type]i]`char16_t`|Type to hold 16-bit characters|
-|[i[`char32_t` type]i]`char32_t`|Type to hold 32-bit characters|
-|[i[`mbstate_t` type]i]`mbstate_t`|Holds the conversion state for restartable funcitons (also defined in [`<wchar.h>`](#wchar))|
-|[i[`size_t` type]i]`size_t`|To hold various counts (also defined in [`<stddef.h>`](#stddef))|
+|`char16_t`|Type to hold 16-bit characters|
+|`char32_t`|Type to hold 32-bit characters|
+|`mbstate_t`|Holds the conversion state for restartable funcitons (also defined in [`<wchar.h>`](#wchar))|
+|`size_t`|To hold various counts (also defined in [`<stddef.h>`](#stddef))|
 
 String literals for the character types are `u` for `char16_t` and `U`
 for `char32_t`.

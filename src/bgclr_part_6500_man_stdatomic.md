@@ -47,45 +47,83 @@ Unix-like operating systems.
 
 A bunch of types are predefined by this header:
 
+[i[`atomic_bool` type]i]
+[i[`atomic_char` type]i]
+[i[`atomic_schar` type]i]
+[i[`atomic_uchar` type]i]
+[i[`atomic_short` type]i]
+[i[`atomic_ushort` type]i]
+[i[`atomic_int` type]i]
+[i[`atomic_uint` type]i]
+[i[`atomic_long` type]i]
+[i[`atomic_ulong` type]i]
+[i[`atomic_llong` type]i]
+[i[`atomic_ullong` type]i]
+[i[`atomic_char16_t` type]i]
+[i[`atomic_char32_t` type]i]
+[i[`atomic_wchar_t` type]i]
+[i[`atomic_int_least8_t` type]i]
+[i[`atomic_uint_least8_t` type]i]
+[i[`atomic_int_least16_t` type]i]
+[i[`atomic_uint_least16_t` type]i]
+[i[`atomic_int_least32_t` type]i]
+[i[`atomic_uint_least32_t` type]i]
+[i[`atomic_int_least64_t` type]i]
+[i[`atomic_uint_least64_t` type]i]
+[i[`atomic_int_fast8_t` type]i]
+[i[`atomic_uint_fast8_t` type]i]
+[i[`atomic_int_fast16_t` type]i]
+[i[`atomic_uint_fast16_t` type]i]
+[i[`atomic_int_fast32_t` type]i]
+[i[`atomic_uint_fast32_t` type]i]
+[i[`atomic_int_fast64_t` type]i]
+[i[`atomic_uint_fast64_t` type]i]
+[i[`atomic_intptr_t` type]i]
+[i[`atomic_uintptr_t` type]i]
+[i[`atomic_size_t` type]i]
+[i[`atomic_ptrdiff_t` type]i]
+[i[`atomic_intmax_t` type]i]
+[i[`atomic_uintmax_t` type]i]
+
 |Atomic type|Longhand equivalent|
 |-|-|
-|[i[`atomic_bool` type]i]`atomic_bool`|`_Atomic _Bool`|
-|[i[`atomic_char` type]i]`atomic_char`|`_Atomic char`|
-|[i[`atomic_schar` type]i]`atomic_schar`|`_Atomic signed char`|
-|[i[`atomic_uchar` type]i]`atomic_uchar`|`_Atomic unsigned char`|
-|[i[`atomic_short` type]i]`atomic_short`|`_Atomic short`|
-|[i[`atomic_ushort` type]i]`atomic_ushort`|`_Atomic unsigned short`|
-|[i[`atomic_int` type]i]`atomic_int`|`_Atomic int`|
-|[i[`atomic_uint` type]i]`atomic_uint`|`_Atomic unsigned int`|
-|[i[`atomic_long` type]i]`atomic_long`|`_Atomic long`|
-|[i[`atomic_ulong` type]i]`atomic_ulong`|`_Atomic unsigned long`|
-|[i[`atomic_llong` type]i]`atomic_llong`|`_Atomic long long`|
-|[i[`atomic_ullong` type]i]`atomic_ullong`|`_Atomic unsigned long long`|
-|[i[`atomic_char16_t` type]i]`atomic_char16_t`|`_Atomic char16_t`|
-|[i[`atomic_char32_t` type]i]`atomic_char32_t`|`_Atomic char32_t`|
-|[i[`atomic_wchar_t` type]i]`atomic_wchar_t`|`_Atomic wchar_t`|
-|[i[`atomic_int_least8_t` type]i]`atomic_int_least8_t`|`_Atomic int_least8_t`|
-|[i[`atomic_uint_least8_t` type]i]`atomic_uint_least8_t`|`_Atomic uint_least8_t`|
-|[i[`atomic_int_least16_t` type]i]`atomic_int_least16_t`|`_Atomic int_least16_t`|
-|[i[`atomic_uint_least16_t` type]i]`atomic_uint_least16_t`|`_Atomic uint_least16_t`|
-|[i[`atomic_int_least32_t` type]i]`atomic_int_least32_t`|`_Atomic int_least32_t`|
-|[i[`atomic_uint_least32_t` type]i]`atomic_uint_least32_t`|`_Atomic uint_least32_t`|
-|[i[`atomic_int_least64_t` type]i]`atomic_int_least64_t`|`_Atomic int_least64_t`|
-|[i[`atomic_uint_least64_t` type]i]`atomic_uint_least64_t`|`_Atomic uint_least64_t`|
-|[i[`atomic_int_fast8_t` type]i]`atomic_int_fast8_t`|`_Atomic int_fast8_t`|
-|[i[`atomic_uint_fast8_t` type]i]`atomic_uint_fast8_t`|`_Atomic uint_fast8_t`|
-|[i[`atomic_int_fast16_t` type]i]`atomic_int_fast16_t`|`_Atomic int_fast16_t`|
-|[i[`atomic_uint_fast16_t` type]i]`atomic_uint_fast16_t`|`_Atomic uint_fast16_t`|
-|[i[`atomic_int_fast32_t` type]i]`atomic_int_fast32_t`|`_Atomic int_fast32_t`|
-|[i[`atomic_uint_fast32_t` type]i]`atomic_uint_fast32_t`|`_Atomic uint_fast32_t`|
-|[i[`atomic_int_fast64_t` type]i]`atomic_int_fast64_t`|`_Atomic int_fast64_t`|
-|[i[`atomic_uint_fast64_t` type]i]`atomic_uint_fast64_t`|`_Atomic uint_fast64_t`|
-|[i[`atomic_intptr_t` type]i]`atomic_intptr_t`|`_Atomic intptr_t`|
-|[i[`atomic_uintptr_t` type]i]`atomic_uintptr_t`|`_Atomic uintptr_t`|
-|[i[`atomic_size_t` type]i]`atomic_size_t`|`_Atomic size_t`|
-|[i[`atomic_ptrdiff_t` type]i]`atomic_ptrdiff_t`|`_Atomic ptrdiff_t`|
-|[i[`atomic_intmax_t` type]i]`atomic_intmax_t`|`_Atomic intmax_t`|
-|[i[`atomic_uintmax_t` type]i]`atomic_uintmax_t`|`_Atomic uintmax_t`|
+|`atomic_bool`|`_Atomic _Bool`|
+|`atomic_char`|`_Atomic char`|
+|`atomic_schar`|`_Atomic signed char`|
+|`atomic_uchar`|`_Atomic unsigned char`|
+|`atomic_short`|`_Atomic short`|
+|`atomic_ushort`|`_Atomic unsigned short`|
+|`atomic_int`|`_Atomic int`|
+|`atomic_uint`|`_Atomic unsigned int`|
+|`atomic_long`|`_Atomic long`|
+|`atomic_ulong`|`_Atomic unsigned long`|
+|`atomic_llong`|`_Atomic long long`|
+|`atomic_ullong`|`_Atomic unsigned long long`|
+|`atomic_char16_t`|`_Atomic char16_t`|
+|`atomic_char32_t`|`_Atomic char32_t`|
+|`atomic_wchar_t`|`_Atomic wchar_t`|
+|`atomic_int_least8_t`|`_Atomic int_least8_t`|
+|`atomic_uint_least8_t`|`_Atomic uint_least8_t`|
+|`atomic_int_least16_t`|`_Atomic int_least16_t`|
+|`atomic_uint_least16_t`|`_Atomic uint_least16_t`|
+|`atomic_int_least32_t`|`_Atomic int_least32_t`|
+|`atomic_uint_least32_t`|`_Atomic uint_least32_t`|
+|`atomic_int_least64_t`|`_Atomic int_least64_t`|
+|`atomic_uint_least64_t`|`_Atomic uint_least64_t`|
+|`atomic_int_fast8_t`|`_Atomic int_fast8_t`|
+|`atomic_uint_fast8_t`|`_Atomic uint_fast8_t`|
+|`atomic_int_fast16_t`|`_Atomic int_fast16_t`|
+|`atomic_uint_fast16_t`|`_Atomic uint_fast16_t`|
+|`atomic_int_fast32_t`|`_Atomic int_fast32_t`|
+|`atomic_uint_fast32_t`|`_Atomic uint_fast32_t`|
+|`atomic_int_fast64_t`|`_Atomic int_fast64_t`|
+|`atomic_uint_fast64_t`|`_Atomic uint_fast64_t`|
+|`atomic_intptr_t`|`_Atomic intptr_t`|
+|`atomic_uintptr_t`|`_Atomic uintptr_t`|
+|`atomic_size_t`|`_Atomic size_t`|
+|`atomic_ptrdiff_t`|`_Atomic ptrdiff_t`|
+|`atomic_intmax_t`|`_Atomic intmax_t`|
+|`atomic_uintmax_t`|`_Atomic uintmax_t`|
 
 You can make your own additional types with the [i[`_Atomic` type
 qualifier]i] `_Atomic` type qualifier:
@@ -107,18 +145,29 @@ These macros let you know if a type is lock-free or not. Maybe.
 They can be used at compile time with `#if`. They apply to both signed
 and unsigned types.
 
+[i[`ATOMIC_BOOL_LOCK_FREE` macro]i]
+[i[`ATOMIC_CHAR_LOCK_FREE` macro]i]
+[i[`ATOMIC_CHAR16_T_LOCK_FREE` macro]i]
+[i[`ATOMIC_CHAR32_T_LOCK_FREE` macro]i]
+[i[`ATOMIC_WCHAR_T_LOCK_FREE` macro]i]
+[i[`ATOMIC_SHORT_LOCK_FREE` macro]i]
+[i[`ATOMIC_INT_LOCK_FREE` macro]i]
+[i[`ATOMIC_LONG_LOCK_FREE` macro]i]
+[i[`ATOMIC_LLONG_LOCK_FREE` macro]i]
+[i[`ATOMIC_POINTER_LOCK_FREE` macro]i]
+
 |Atomic Type|Lock Free Macro|
 |-|-|
-|`atomic_bool`|[i[`ATOMIC_BOOL_LOCK_FREE` macro]i]`ATOMIC_BOOL_LOCK_FREE`|
-|`atomic_char`|[i[`ATOMIC_CHAR_LOCK_FREE` macro]i]`ATOMIC_CHAR_LOCK_FREE`|
-|`atomic_char16_t`|[i[`ATOMIC_CHAR16_T_LOCK_FREE` macro]i]`ATOMIC_CHAR16_T_LOCK_FREE`|
-|`atomic_char32_t`|[i[`ATOMIC_CHAR32_T_LOCK_FREE` macro]i]`ATOMIC_CHAR32_T_LOCK_FREE`|
-|`atomic_wchar_t`|[i[`ATOMIC_WCHAR_T_LOCK_FREE` macro]i]`ATOMIC_WCHAR_T_LOCK_FREE`|
-|`atomic_short`|[i[`ATOMIC_SHORT_LOCK_FREE` macro]i]`ATOMIC_SHORT_LOCK_FREE`|
-|`atomic_int`|[i[`ATOMIC_INT_LOCK_FREE` macro]i]`ATOMIC_INT_LOCK_FREE`|
-|`atomic_long`|[i[`ATOMIC_LONG_LOCK_FREE` macro]i]`ATOMIC_LONG_LOCK_FREE`|
-|`atomic_llong`|[i[`ATOMIC_LLONG_LOCK_FREE` macro]i]`ATOMIC_LLONG_LOCK_FREE`|
-|`atomic_intptr_t`|[i[`ATOMIC_POINTER_LOCK_FREE` macro]i]`ATOMIC_POINTER_LOCK_FREE`|
+|`atomic_bool`|`ATOMIC_BOOL_LOCK_FREE`|
+|`atomic_char`|`ATOMIC_CHAR_LOCK_FREE`|
+|`atomic_char16_t`|`ATOMIC_CHAR16_T_LOCK_FREE`|
+|`atomic_char32_t`|`ATOMIC_CHAR32_T_LOCK_FREE`|
+|`atomic_wchar_t`|`ATOMIC_WCHAR_T_LOCK_FREE`|
+|`atomic_short`|`ATOMIC_SHORT_LOCK_FREE`|
+|`atomic_int`|`ATOMIC_INT_LOCK_FREE`|
+|`atomic_long`|`ATOMIC_LONG_LOCK_FREE`|
+|`atomic_llong`|`ATOMIC_LLONG_LOCK_FREE`|
+|`atomic_intptr_t`|`ATOMIC_POINTER_LOCK_FREE`|
 
 These macros can interestingly have _three_ different values:
 
@@ -153,14 +202,21 @@ This header introduces a new `enum` type called `memory_order`. This is
 used by a bunch of the functions to specify memory orders other than
 sequential consistency.
 
+[i[`memory_order_seq_cst` enumerated type]i]
+[i[`memory_order_acq_rel` enumerated type]i]
+[i[`memory_order_release` enumerated type]i]
+[i[`memory_order_acquire` enumerated type]i]
+[i[`memory_order_consume` enumerated type]i]
+[i[`memory_order_relaxed` enumerated type]i]
+
 |`memory_order`|Description|
 |-|-|
-|[i[`memory_order_seq_cst` enumerated type]i]`memory_order_seq_cst`|Sequential Consistency|
-|[i[`memory_order_acq_rel` enumerated type]i]`memory_order_acq_rel`|Acquire/Release|
-|[i[`memory_order_release` enumerated type]i]`memory_order_release`|Release|
-|[i[`memory_order_acquire` enumerated type]i]`memory_order_acquire`|Acquire|
-|[i[`memory_order_consume` enumerated type]i]`memory_order_consume`|Consume|
-|[i[`memory_order_relaxed` enumerated type]i]`memory_order_relaxed`|Relaxed|
+|`memory_order_seq_cst`|Sequential Consistency|
+|`memory_order_acq_rel`|Acquire/Release|
+|`memory_order_release`|Release|
+|`memory_order_acquire`|Acquire|
+|`memory_order_consume`|Consume|
+|`memory_order_relaxed`|Relaxed|
 
 You can feed these into atomic functions with the `_explicit` suffix.
 

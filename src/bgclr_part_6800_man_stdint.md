@@ -172,17 +172,27 @@ $2^{16}-1$.
 There are a bunch of types in `<inttypes.h>`(#inttypes) that have their
 limits defined here. (`<inttypes.h>` includes `<stdint.h>`.)
 
+[i[`PTRDIFF_MIN` macro]i]
+[i[`PTRDIFF_MAX` macro]i]
+[i[`SIG_ATOMIC_MIN` macro]i]
+[i[`SIG_ATOMIC_MAX` macro]i]
+[i[`SIZE_MAX` macro]i]
+[i[`WCHAR_MIN` macro]i]
+[i[`WCHAR_MAX` macro]i]
+[i[`WINT_MIN` macro]i]
+[i[`WINT_MAX` macro]i]
+
 |Macro|Description|
 |-|-|
-|[i[`PTRDIFF_MIN` macro]i]`PTRDIFF_MIN`|Minimum `ptrdiff_t` value|
-|[i[`PTRDIFF_MAX` macro]i]`PTRDIFF_MAX`|Maximum `ptrdiff_t` value|
-|[i[`SIG_ATOMIC_MIN` macro]i]`SIG_ATOMIC_MIN`|Minimum `sig_atomic_t` value|
-|[i[`SIG_ATOMIC_MAX` macro]i]`SIG_ATOMIC_MAX`|Maximum `sig_atomic_t` value|
-|[i[`SIZE_MAX` macro]i]`SIZE_MAX`|Maximum `size_t` value|
-|[i[`WCHAR_MIN` macro]i]`WCHAR_MIN`|Minimum `wchar_t` value|
-|[i[`WCHAR_MAX` macro]i]`WCHAR_MAX`|Maximum `wchar_t` value|
-|[i[`WINT_MIN` macro]i]`WINT_MIN`|Minimum `wint_t` value|
-|[i[`WINT_MAX` macro]i]`WINT_MAX`|Maximum `wint_t` value|
+|`PTRDIFF_MIN`|Minimum `ptrdiff_t` value|
+|`PTRDIFF_MAX`|Maximum `ptrdiff_t` value|
+|`SIG_ATOMIC_MIN`|Minimum `sig_atomic_t` value|
+|`SIG_ATOMIC_MAX`|Maximum `sig_atomic_t` value|
+|`SIZE_MAX`|Maximum `size_t` value|
+|`WCHAR_MIN`|Minimum `wchar_t` value|
+|`WCHAR_MAX`|Maximum `wchar_t` value|
+|`WINT_MIN`|Minimum `wint_t` value|
+|`WINT_MAX`|Maximum `wint_t` value|
 
 The spec says that `PTRDIFF_MIN` will be at least -65535 in magnitude.
 And `PTRDIFF_MAX` and `SIZE_MAX` will be at least 65535.

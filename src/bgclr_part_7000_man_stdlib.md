@@ -63,23 +63,35 @@ So, you know... a little of everything.
 A couple new types and macros are introduced, though some of these might
 also be defined elsewhere:
 
+[i[`size_t` type]i]
+[i[`wchar_t` type]i]
+[i[`div_t` type]i]
+[i[`ldiv_t` type]i]
+[i[`lldiv_t` type]i]
+
 |Type|Description|
 |-|-|
-|[i[`size_t` type]i]`size_t`|Returned from `sizeof` and used elsewhere
-|[i[`wchar_t` type]i]`wchar_t`|For wide character operations
-|[i[`div_t` type]i]`div_t`|For the `div()` function|
-|[i[`ldiv_t` type]i]`ldiv_t`|For the `ldiv()` function|
-|[i[`lldiv_t` type]i]`lldiv_t`|for the `lldiv()` function|
+|`size_t`|Returned from `sizeof` and used elsewhere
+|`wchar_t`|For wide character operations
+|`div_t`|For the `div()` function|
+|`ldiv_t`|For the `ldiv()` function|
+|`lldiv_t`|for the `lldiv()` function|
 
 And some macros:
 
+[i[`NULL` macro]i]
+[i[`EXIT_SUCCESS` macro]i]
+[i[`EXIT_FAILURE` macro]i]
+[i[`RAND_MAX` macro]i]
+[i[`MB_CUR_MAX` macro]i]
+
 |Type|Description|
 |-|-|
-|[i[`NULL` macro]i]`NULL`|Our good pointer friend|
-|[i[`EXIT_SUCCESS` macro]i]`EXIT_SUCCESS`|Good exit status when things go well|
-|[i[`EXIT_FAILURE` macro]i]`EXIT_FAILURE`|Good exit status when things go poorly|
-|[i[`RAND_MAX` macro]i]`RAND_MAX`|The maximum value that can be returned by the `rand()` function|
-|[i[`MB_CUR_MAX` macro]i]`MB_CUR_MAX`|Maximum number of bytes in a multibyte character in the current locale|
+|`NULL`|Our good pointer friend|
+|`EXIT_SUCCESS`|Good exit status when things go well|
+|`EXIT_FAILURE`|Good exit status when things go poorly|
+|`RAND_MAX`|The maximum value that can be returned by the `rand()` function|
+|`MB_CUR_MAX`|Maximum number of bytes in a multibyte character in the current locale|
 
 And there you have it. Just a lot of fun, useful functions in here.
 Let's check 'em out!

@@ -117,11 +117,15 @@ get one?
 
 That's jumping the gun a bit---let's just look at them:
 
+[i[`stdin` standard input]i]
+[i[`stdout` standard output]i]
+[i[`stderr` standard error]i]
+
 |Stream|Description|
 |-|-|
-|[i[`stdin` standard input]i]`stdin`|Input from the console.|
-|[i[`stdout` standard output]i]`stdout`|Output to the console.|
-|[i[`stderr` standard error]i]`stderr`|Output to the console on the error file stream.|
+|`stdin`|Input from the console.|
+|`stdout`|Output to the console.|
+|`stderr`|Output to the console on the error file stream.|
 
 So standard input (`stdin`) is by default just what you type at the
 keyboard. You can use that in `fscanf()` if you want, just like this:

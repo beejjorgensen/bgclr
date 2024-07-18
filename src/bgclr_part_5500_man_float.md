@@ -7,51 +7,83 @@
 
 [i[`float.h` header file]i]
 
+[i[`FLT_EVAL_METHOD` macro]i]
+[i[`FLT_RADIX` macro]i]
+[i[`FLT_MANT_DIG` macro]i]
+[i[`DBL_MANT_DIG` macro]i]
+[i[`LDBL_MANT_DIG` macro]i]
+[i[`DECIMAL_DIG` macro]i]
+[i[`FLT_MIN_EXP` macro]i]
+[i[`DBL_MIN_EXP` macro]i]
+[i[`LDBL_MIN_EXP` macro]i]
+[i[`FLT_MIN_10_EXP` macro]i]
+[i[`DBL_MIN_10_EXP` macro]i]
+[i[`LDBL_MIN_10_EXP` macro]i]
+[i[`FLT_MAX_EXP` macro]i]
+[i[`DBL_MAX_EXP` macro]i]
+[i[`LDBL_MAX_EXP` macro]i]
+[i[`FLT_MAX_10_EXP` macro]i]
+[i[`DBL_MAX_10_EXP` macro]i]
+[i[`LDBL_MAX_10_EXP` macro]i]
+[i[`FLT_MAX` macro]i]
+[i[`DBL_MAX` macro]i]
+[i[`LDBL_MAX` macro]i]
+
 |Macro|Minimum Magnitude|Description|
 |--|:--:|--------|
 |`FLT_ROUNDS`||Current rounding mode|
-|[i[`FLT_EVAL_METHOD` macro]i]`FLT_EVAL_METHOD`||Types used for evaluation|
+|`FLT_EVAL_METHOD`||Types used for evaluation|
 |`FLT_HAS_SUBNORM`||Subnormal support for `float`|
 |`DBL_HAS_SUBNORM`||Subnormal support for `double`|
 |`LDBL_HAS_SUBNORM`||Subnormal support for `long double`|
-|[i[`FLT_RADIX` macro]i]`FLT_RADIX`|`2`|Floating point radix (base)|
-|[i[`FLT_MANT_DIG` macro]i]`FLT_MANT_DIG`||Number of base `FLT_RADIX` digits in a `float`|
-|[i[`DBL_MANT_DIG` macro]i]`DBL_MANT_DIG`||Number of base `FLT_RADIX` digits in a `double`|
-|[i[`LDBL_MANT_DIG` macro]i]`LDBL_MANT_DIG`||Number of base `FLT_RADIX` digits in a `long double`|
+|`FLT_RADIX`|`2`|Floating point radix (base)|
+|`FLT_MANT_DIG`||Number of base `FLT_RADIX` digits in a `float`|
+|`DBL_MANT_DIG`||Number of base `FLT_RADIX` digits in a `double`|
+|`LDBL_MANT_DIG`||Number of base `FLT_RADIX` digits in a `long double`|
 |`FLT_DECIMAL_DIG`|`6`|Number of decimal digits required to encode a `float`|
 |`DBL_DECIMAL_DIG`|`10`|Number of decimal digits required to encode a `double`|
 |`LDBL_DECIMAL_DIG`|`10`|Number of decimal digits required to encode a `long double`|
-|[i[`DECIMAL_DIG` macro]i]`DECIMAL_DIG`|`10`|Number of decimal digits required to encode the the widest floating point number supported|
+|`DECIMAL_DIG`|`10`|Number of decimal digits required to encode the the widest floating point number supported|
 |`FLT_DIG`|`6`|Number of decimal digits that can be safely stored in a `float`|
 |`DBL_DIG`|`10`|Number of decimal digits that can be safely stored in a `double`|
 |`LDBL_DIG`|`10`|Number of decimal digits that can be safely stored in a `long double`|
-|[i[`FLT_MIN_EXP` macro]i]`FLT_MIN_EXP`||`FLT_RADIX` to the `FLT_MIN_EXP-1` power is the smallest normalized `float`|
-|[i[`DBL_MIN_EXP` macro]i]`DBL_MIN_EXP`||`FLT_RADIX` to the `DBL_MIN_EXP-1` power is the smallest normalized `double`|
-|[i[`LDBL_MIN_EXP` macro]i]`LDBL_MIN_EXP`||`FLT_RADIX` to the `LDBL_MIN_EXP-1` power is the smallest normalized `long double`|
-|[i[`FLT_MIN_10_EXP` macro]i]`FLT_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `float`|
-|[i[`DBL_MIN_10_EXP` macro]i]`DBL_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `double`
-|[i[`LDBL_MIN_10_EXP` macro]i]`LDBL_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `long_double`
-|[i[`FLT_MAX_EXP` macro]i]`FLT_MAX_EXP`||`FLT_RADIX` to the `FLT_MAX_EXP-1` power is the largest finite `float`|
-|[i[`DBL_MAX_EXP` macro]i]`DBL_MAX_EXP`||`FLT_RADIX` to the `DBL_MAX_EXP-1` power is the largest finite `double`|
-|[i[`LDBL_MAX_EXP` macro]i]`LDBL_MAX_EXP`||`FLT_RADIX` to the `LDBL_MAX_EXP-1` power is the largest finite `long double`|
-|[i[`FLT_MAX_10_EXP` macro]i]`FLT_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `float`|
-|[i[`DBL_MAX_10_EXP` macro]i]`DBL_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `double`
-|[i[`LDBL_MAX_10_EXP` macro]i]`LDBL_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `long_double`
-|[i[`FLT_MAX` macro]i]`FLT_MAX`|`1E+37`|Largest finite `float`|
-|[i[`DBL_MAX` macro]i]`DBL_MAX`|`1E+37`|Largest finite `double`|
-|[i[`LDBL_MAX` macro]i]`LDBL_MAX`|`1E+37`|Largest finite `long double`|
+|`FLT_MIN_EXP`||`FLT_RADIX` to the `FLT_MIN_EXP-1` power is the smallest normalized `float`|
+|`DBL_MIN_EXP`||`FLT_RADIX` to the `DBL_MIN_EXP-1` power is the smallest normalized `double`|
+|`LDBL_MIN_EXP`||`FLT_RADIX` to the `LDBL_MIN_EXP-1` power is the smallest normalized `long double`|
+|`FLT_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `float`|
+|`DBL_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `double`
+|`LDBL_MIN_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a normalized `long_double`
+|`FLT_MAX_EXP`||`FLT_RADIX` to the `FLT_MAX_EXP-1` power is the largest finite `float`|
+|`DBL_MAX_EXP`||`FLT_RADIX` to the `DBL_MAX_EXP-1` power is the largest finite `double`|
+|`LDBL_MAX_EXP`||`FLT_RADIX` to the `LDBL_MAX_EXP-1` power is the largest finite `long double`|
+|`FLT_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `float`|
+|`DBL_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `double`
+|`LDBL_MAX_10_EXP`|`-37`|Minimum exponent such that `10` to this number is a finite `long_double`
+|`FLT_MAX`|`1E+37`|Largest finite `float`|
+|`DBL_MAX`|`1E+37`|Largest finite `double`|
+|`LDBL_MAX`|`1E+37`|Largest finite `long double`|
+
+[i[`FLT_EPSILON` macro]i]
+[i[`DBL_EPSILON` macro]i]
+[i[`LDBL_EPSILON` macro]i]
+[i[`FLT_MIN` macro]i]
+[i[`DBL_MIN` macro]i]
+[i[`LDBL_MIN` macro]i]
+[i[`FLT_TRUE_MIN` macro]i]
+[i[`DBL_TRUE_MIN` macro]i]
+[i[`LDBL_TRUE_MIN` macro]i]
 
 |Macro|Maximum Value|Description|
 |--|:--:|--------|
-|[i[`FLT_EPSILON` macro]i]`FLT_EPSILON`|`1E-5`|Difference between 1 and the next biggest representable `float`|
-|[i[`DBL_EPSILON` macro]i]`DBL_EPSILON`|`1E-9`|Difference between 1 and the next biggest representable `double`|
-|[i[`LDBL_EPSILON` macro]i]`LDBL_EPSILON`|`1E-9`|Difference between 1 and the next biggest representable `long double`|
-|[i[`FLT_MIN` macro]i]`FLT_MIN`|`1E-37`|Minimum positive normalized `float`|
-|[i[`DBL_MIN` macro]i]`DBL_MIN`|`1E-37`|Minimum positive normalized `double`|
-|[i[`LDBL_MIN` macro]i]`LDBL_MIN`|`1E-37`|Minimum positive normalized `long double`|
-|[i[`FLT_TRUE_MIN` macro]i]`FLT_TRUE_MIN`|`1E-37`|Minimum positive `float`|
-|[i[`DBL_TRUE_MIN` macro]i]`DBL_TRUE_MIN`|`1E-37`|Minimum positive `double`|
-|[i[`LDBL_TRUE_MIN` macro]i]`LDBL_TRUE_MIN`|`1E-37`|Minimum positive `long double`|
+|`FLT_EPSILON`|`1E-5`|Difference between 1 and the next biggest representable `float`|
+|`DBL_EPSILON`|`1E-9`|Difference between 1 and the next biggest representable `double`|
+|`LDBL_EPSILON`|`1E-9`|Difference between 1 and the next biggest representable `long double`|
+|`FLT_MIN`|`1E-37`|Minimum positive normalized `float`|
+|`DBL_MIN`|`1E-37`|Minimum positive normalized `double`|
+|`LDBL_MIN`|`1E-37`|Minimum positive normalized `long double`|
+|`FLT_TRUE_MIN`|`1E-37`|Minimum positive `float`|
+|`DBL_TRUE_MIN`|`1E-37`|Minimum positive `double`|
+|`LDBL_TRUE_MIN`|`1E-37`|Minimum positive `long double`|
 
 The minimum and maximum values here are from the spec---they should what
 you can at least expect across all platforms. Your super dooper machine

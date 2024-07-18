@@ -15,19 +15,31 @@ defines a number of macros you can use in case those characters aren't
 found on your keyboard. (And also C++ can use these same alternate
 spellings.)
 
+[i[`and` macro]i]
+[i[`and_eq` macro]i]
+[i[`bitand` macro]i]
+[i[`bitor` macro]i]
+[i[`compl` macro]i]
+[i[`not` macro]i]
+[i[`not_eq` macro]i]
+[i[`or` macro]i]
+[i[`or_eq` macro]i]
+[i[`xor` macro]i]
+[i[`xor_eq` macro]i]
+
 |Operator|`<iso646.h>` equivalent|
 |-|-|
-|`&&`|[i[`and` macro]i]`and`|
-|`&=`|[i[`and_eq` macro]i]`and_eq`|
-|`&`|[i[`bitand` macro]i]`bitand`|
-|`|`|[i[`bitor` macro]i]`bitor`|
-|`~`|[i[`compl` macro]i]`compl`|
-|`!`|[i[`not` macro]i]`not`|
-|`!=`|[i[`not_eq` macro]i]`not_eq`|
-|`||`|[i[`or` macro]i]`or`|
-|`|=`|[i[`or_eq` macro]i]`or_eq`|
-|`^`|[i[`xor` macro]i]`xor`|
-|`^=`|[i[`xor_eq` macro]i]`xor_eq`|
+|`&&`|`and`|
+|`&=`|`and_eq`|
+|`&`|`bitand`|
+|`|`|`bitor`|
+|`~`|`compl`|
+|`!`|`not`|
+|`!=`|`not_eq`|
+|`||`|`or`|
+|`|=`|`or_eq`|
+|`^`|`xor`|
+|`^=`|`xor_eq`|
 
 Interestingly, there is no `eq` for `==`, and `&` and `!` are included
 despite being in ISO-646.
