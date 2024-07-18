@@ -2,4 +2,6 @@ bgclr*.pdf
 bgclr*.html
 bgclr*.epub
 bgclr_temp_*
-
+bg-css*.html
+split/
+split-wide/
