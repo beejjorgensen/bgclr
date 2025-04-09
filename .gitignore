@@ -25,3 +25,4 @@ bar.[ch]
 baz
 baz.[ch]
 .vscode/*
+.DS_Store
