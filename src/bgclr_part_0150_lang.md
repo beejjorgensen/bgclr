@@ -380,7 +380,7 @@ Accessing is done with the dot operator (`.`) or, if the variable is a
 pointer to a `union`, the arrow operator (`->`).
 
 ``` {.c}
-union dt *p = b;
+union dt *p = &b;
 
 printf("%d\n", b.time);
 printf("%d\n", p->time);
