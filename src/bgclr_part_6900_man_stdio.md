@@ -1254,11 +1254,11 @@ The `#` "alternate form" result depends on the conversion specifier.
 |`g`, `G`|Always print a decimal point, even if nothing follows it, and keep trailing zeros.|
 
 
-#### `sprintf()` and `snprintf()` Details
+#### `snprintf()` Details
 
-`snprintf()` has the quality that if you pass in
-`NULL` as the buffer, nothing is written---but you can still check the
-return value to see how many characters _would_ have been written.
+`snprintf()` has the quality that if you pass in `NULL` as the buffer
+and `0` for `n`, nothing is written---but you can still check the return
+value to see how many characters _would_ have been written.
 
 `snprintf()` **always** terminates the string with a `NUL` character. So
 if you try to write out more than the maximum specified characters, the
