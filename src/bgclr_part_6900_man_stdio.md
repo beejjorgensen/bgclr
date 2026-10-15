@@ -1256,7 +1256,7 @@ The `#` "alternate form" result depends on the conversion specifier.
 
 #### `sprintf()` and `snprintf()` Details
 
-Both `sprintf()` and `snprintf()` have the quality that if you pass in
+`snprintf()` has the quality that if you pass in
 `NULL` as the buffer, nothing is written---but you can still check the
 return value to see how many characters _would_ have been written.
 
