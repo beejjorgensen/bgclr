@@ -1716,7 +1716,7 @@ a negative value on error.
 `vsprintf()` returns the number of characters printed to the buffer, not
 counting the NUL terminator, or a negative value if an error occurred.
 
-`vnsprintf()` returns the number of characters printed to the buffer. Or
+`vsnprintf()` returns the number of characters printed to the buffer. Or
 the number that _would_ have been printed if the buffer had been large
 enough.
 
